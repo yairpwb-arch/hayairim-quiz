@@ -381,6 +381,32 @@
     width: 0%;
   }
 
+  /* ===== AI ANALYSIS ===== */
+  .ai-box {
+    background: linear-gradient(135deg, #fff9f0, #fff4e0);
+    border: 1px solid rgba(255,184,99,0.35);
+    border-radius: 16px;
+    padding: 22px 24px;
+    margin: 24px 0;
+  }
+  .ai-box-title {
+    font-size: 14px; font-weight: 800; color: #e8952a;
+    margin-bottom: 14px; display: flex; align-items: center; gap: 6px;
+  }
+  .ai-text {
+    font-size: 15px; line-height: 1.85; color: #2a2a2a; white-space: pre-line;
+  }
+  .ai-dots {
+    display: flex; align-items: center; gap: 8px; color: #aaa; font-size: 14px;
+  }
+  .ai-dot {
+    width: 7px; height: 7px; background: #e8952a; border-radius: 50%;
+    animation: dotPulse 1.4s infinite;
+  }
+  .ai-dot:nth-child(2) { animation-delay: 0.2s; }
+  .ai-dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes dotPulse { 0%,80%,100%{opacity:.25} 40%{opacity:1} }
+
   .result-cta-card {
     background: linear-gradient(135deg, #fff8ee 0%, #fff4e0 100%);
     border: 1.5px solid rgba(255,184,99,0.3);
@@ -726,7 +752,7 @@
         </label>
       </div>
 
-      <button class="btn-primary" style="width:100%;justify-content:center;font-size:17px;padding:16px;" onclick="submitPreDetails()">
+      <button id="submit-details-btn" class="btn-primary" style="width:100%;justify-content:center;font-size:17px;padding:16px;" onclick="submitPreDetails()">
         הצג את הציון שלי ←
       </button>
       <div id="pre-error" style="display:none;text-align:center;margin-top:12px;font-size:13px;color:#e24b4a;font-weight:600;"></div>
@@ -774,6 +800,15 @@
 
     <div class="result-level-badge" id="result-level-badge"></div>
     <p class="result-description" id="result-description"></p>
+    <div class="ai-box">
+      <div class="ai-box-title">🤖 הניתוח האישי שלך</div>
+      <div id="ai-analysis">
+        <div class="ai-dots">
+          <div class="ai-dot"></div><div class="ai-dot"></div><div class="ai-dot"></div>
+          <span>מנתח את התוצאות שלך...</span>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="results-body">
@@ -1016,7 +1051,7 @@ function goBack() {
 }
 
 
-function submitPreDetails() {
+async function submitPreDetails() {
   const name = document.getElementById('pre-name').value.trim();
   const phone = document.getElementById('pre-phone').value.trim();
   const email = document.getElementById('pre-email').value.trim();
@@ -1033,6 +1068,11 @@ function submitPreDetails() {
   window._leadPhone = phone;
   window._leadEmail = email;
 
+  // Show loading state on button
+  const btn = document.getElementById('submit-details-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span style="display:flex;align-items:center;gap:8px;justify-content:center">⏳ מכין את הניתוח שלך...</span>';
+
   // Calculate score
   const maxScore = questions.reduce((sum, q) => sum + Math.max(...q.scores), 0);
   const rawScore = answers.reduce((sum, a, i) => sum + (a !== null ? questions[i].scores[a] : 0), 0);
@@ -1047,12 +1087,37 @@ function submitPreDetails() {
     (catScoresTemp[a].raw / catScoresTemp[a].max) <= (catScoresTemp[b].raw / catScoresTemp[b].max) ? a : b
   );
 
-  // Send to Google Sheet
+  // Build category scores object
+  const catPcts = {};
+  catOrder.forEach(c => {
+    catPcts[c] = Math.round((catScoresTemp[c].raw / catScoresTemp[c].max) * 100);
+  });
+
+  // Get AI analysis then send everything
+  let aiAnalysis = '';
+  try {
+    const aiResp = await fetch('/api/analyze', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, score: calcScore, categories: catPcts })
+    });
+    const aiData = await aiResp.json();
+    aiAnalysis = aiData.analysis || '';
+    window._leadAnalysis = aiAnalysis;
+  } catch(e) { console.log('AI error:', e); }
+
+  // Send to Google Sheet with full details
   sendToSheet({
     timestamp: new Date().toLocaleString('he-IL'),
     name, phone, email,
     score: calcScore,
-    topCategory: calcTopCat
+    topCategory: calcTopCat,
+    'אכילה רגשית': catPcts['אכילה רגשית'] + '%',
+    'שליטה בכמויות': catPcts['שליטה בכמויות'] + '%',
+    'שינה ואנרגיה': catPcts['שינה ואנרגיה'] + '%',
+    'פעילות גופנית': catPcts['פעילות גופנית'] + '%',
+    'מחשבות על דיאטה': catPcts['מחשבות על דיאטה'] + '%',
+    analysis: aiAnalysis
   });
 
   // Encode answers for URL
@@ -1135,6 +1200,32 @@ function showResults() {
         el.style.width = el.dataset.pct + '%';
       });
     }, 100);
+
+    // ===== AI ANALYSIS =====
+    const analysisEl = document.getElementById('ai-analysis');
+    if (window._leadAnalysis) {
+      analysisEl.innerHTML = `<div class="ai-text">${window._leadAnalysis.replace(/\n/g,'<br>')}</div>`;
+    } else {
+      const catScoresForAI = {};
+      catOrder.forEach(cat => {
+        catScoresForAI[cat] = Math.round((catScores[cat].raw / catScores[cat].max) * 100);
+      });
+      fetch('/api/analyze', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: window._leadName || 'חבר', score: finalScore, categories: catScoresForAI })
+      })
+      .then(r => r.json())
+      .then(data => {
+        if (data.analysis) {
+          window._leadAnalysis = data.analysis;
+          analysisEl.innerHTML = `<div class="ai-text">${data.analysis.replace(/\n/g,'<br>')}</div>`;
+        }
+      })
+      .catch(() => {
+        analysisEl.innerHTML = '<div class="ai-text" style="color:#aaa;">לא הצלחנו לטעון את הניתוח. נסה לרענן.</div>';
+      });
+    }
   }, 100);
 }
 
