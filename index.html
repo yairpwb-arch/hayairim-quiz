@@ -19,7 +19,7 @@
     --text-light: #999;
     --border: #e8e0d4;
     --white: #ffffff;
-    --bg: #fafaf8;
+    --bg: #fffaf3;
     --success: #2d9b5a;
     --card-shadow: 0 2px 20px rgba(0,0,0,0.06);
     --card-shadow-hover: 0 8px 40px rgba(255,184,99,0.25);
@@ -163,15 +163,17 @@
     color: #e8952a;
     position: relative;
     display: inline-block;
+    font-size: 1.08em;
+    letter-spacing: -1px;
   }
   .hero-h1 .gold::after {
     content: '';
     position: absolute;
-    bottom: -1px; right: 0; left: 0;
-    height: 3px;
+    bottom: 0px; right: 0; left: 0;
+    height: 5px;
     background: linear-gradient(90deg, #ffb863, #e8952a);
-    border-radius: 2px;
-    opacity: 0.7;
+    border-radius: 3px;
+    opacity: 0.55;
   }
 
   /* Subtitle */
@@ -404,7 +406,7 @@
 
   /* ======= PAGE 2 — QUIZ ======= */
   #page-quiz {
-    background: var(--bg);
+    background: #fffaf3;
     padding-bottom: 60px;
   }
 
@@ -526,7 +528,7 @@
   .btn-back:disabled { opacity: 0.3; cursor: default; }
 
   /* ======= PAGE 3 — RESULTS ======= */
-  #page-results { background: var(--bg); padding-bottom: 80px; }
+  #page-results { background: #fffaf3; padding-bottom: 80px; }
 
   .results-hero {
     background: var(--white);
@@ -655,7 +657,7 @@
   }
 
   /* ======= PAGE 4 — PROCESS ======= */
-  #page-process { background: var(--white); }
+  #page-process { background: #fffaf3; }
 
   .process-hero {
     background: var(--text);
@@ -989,7 +991,7 @@
 <!-- ===== PAGE 2.7: EMAIL SENT ===== -->
 <div id="page-email-sent" class="page">
   <nav class="nav">
-    <div class="logo" style="font-size:20px;font-weight:900;">הי<span style="color:#e8952a;">אירים</span></div>
+    <div class="logo" style="font-size:18px;font-weight:900;">חטוב <span style="color:var(--orange-dark);">בלי תפריט</span></div>
   </nav>
   <div style="max-width:520px;margin:0 auto;padding:60px 24px;text-align:center;">
     <div style="width:90px;height:90px;background:#fff4e0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:42px;margin:0 auto 32px;box-shadow:0 4px 20px rgba(255,184,99,0.3);">📧</div>
