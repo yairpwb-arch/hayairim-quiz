@@ -1037,6 +1037,28 @@ function submitPreDetails() {
   window._leadPhone = phone;
   window._leadEmail = email;
 
+  // Calculate score
+  const maxScore = questions.reduce((sum, q) => sum + Math.max(...q.scores), 0);
+  const rawScore = answers.reduce((sum, a, i) => sum + (a !== null ? questions[i].scores[a] : 0), 0);
+  const calcScore = Math.max(1, Math.min(100, Math.round((rawScore / maxScore) * 100)));
+  const catScoresTemp = {};
+  catOrder.forEach(c => catScoresTemp[c] = { raw: 0, max: 0 });
+  questions.forEach((q, i) => {
+    catScoresTemp[q.cat].raw += answers[i] !== null ? q.scores[answers[i]] : 0;
+    catScoresTemp[q.cat].max += Math.max(...q.scores);
+  });
+  const calcTopCat = catOrder.reduce((a, b) =>
+    (catScoresTemp[a].raw / catScoresTemp[a].max) <= (catScoresTemp[b].raw / catScoresTemp[b].max) ? a : b
+  );
+
+  // Send to Google Sheet
+  sendToSheet({
+    timestamp: new Date().toLocaleString('he-IL'),
+    name, phone, email,
+    score: calcScore,
+    topCategory: calcTopCat
+  });
+
   // Encode answers for URL
   const encodedAnswers = answers.map(a => a !== null ? a : 'x').join('');
   const resultsUrl = `${window.location.origin}${window.location.pathname}?a=${encodedAnswers}&n=${encodeURIComponent(name)}`;
@@ -1124,7 +1146,7 @@ function showProcess() {
   showPage('page-process');
 }
 
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwnY3CwriwLF8hnXkAIISG4g_D8050ew-qGmI1eCVPgsqAh5nNFPobS_zZ8Au9kT3tRcA/exec';
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbySPr1wBWPIYVMeweoWm7PGFv4z-X5wYkSllUzH-k5li3oqyFAonahj_ADLVB1wVfCoTw/exec';
 
 function sendToSheet(data) {
   fetch(SHEET_URL, {
