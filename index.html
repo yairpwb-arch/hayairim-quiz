@@ -1093,18 +1093,22 @@ async function submitPreDetails() {
     catPcts[c] = Math.round((catScoresTemp[c].raw / catScoresTemp[c].max) * 100);
   });
 
-  // Get AI analysis then send everything
+  // Get AI analysis with 8s timeout — always continues even on failure
   let aiAnalysis = '';
   try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8000);
     const aiResp = await fetch('/api/analyze', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, score: calcScore, categories: catPcts })
+      body: JSON.stringify({ name, score: calcScore, categories: catPcts }),
+      signal: controller.signal
     });
+    clearTimeout(timeout);
     const aiData = await aiResp.json();
     aiAnalysis = aiData.analysis || '';
     window._leadAnalysis = aiAnalysis;
-  } catch(e) { console.log('AI error:', e); }
+  } catch(e) { console.log('AI skipped:', e.message); }
 
   // Send to Google Sheet with full details
   sendToSheet({
@@ -1134,7 +1138,6 @@ async function submitPreDetails() {
 
   // Show email-sent page
   document.getElementById('email-sent-to').textContent = email;
-  document.getElementById('btn-view-results').href = resultsUrl;
   showPage('page-email-sent');
 }
 
