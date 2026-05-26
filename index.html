@@ -1042,8 +1042,8 @@ function submitPreDetails() {
   const resultsUrl = `${window.location.origin}${window.location.pathname}?a=${encodedAnswers}&n=${encodeURIComponent(name)}`;
 
   // Send email via EmailJS
-  emailjs.init('YOUR_PUBLIC_KEY');
-  emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+  emailjs.init('yJ9Sa-WFIg4-9uIcr');
+  emailjs.send('service_e56vqzc', 'template_xfmuw6l', {
     name: name,
     email: email,
     results_url: resultsUrl
