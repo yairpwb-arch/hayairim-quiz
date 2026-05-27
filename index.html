@@ -1472,7 +1472,7 @@ function showResults() {
     // ===== AI ANALYSIS =====
     const analysisEl = document.getElementById('ai-analysis');
     if (window._leadAnalysis) {
-      analysisEl.innerHTML = `<div class="ai-text">${window._leadAnalysis.replace(/\n/g,'<br>')}</div>`;
+      analysisEl.innerHTML = '<div class="ai-text">' + window._leadAnalysis.replace(/\n/g,'<br>') + '</div>';
     } else {
       const catScoresForAI = {};
       catOrder.forEach(cat => {
@@ -1487,14 +1487,13 @@ function showResults() {
       .then(data => {
         if (data.analysis) {
           window._leadAnalysis = data.analysis;
-          analysisEl.innerHTML = <div class="ai-text"></div>;
+          analysisEl.innerHTML = '<div class="ai-text">' + data.analysis.replace(/\n/g,'<br>') + '</div>';
         } else {
           analysisEl.innerHTML = '<div class="ai-text" style="color:#999;">הניתוח אינו זמין כרגע — הגדרות המערכת חסרות.</div>';
         }
       })
       .catch(() => {
         analysisEl.innerHTML = '<div class="ai-text" style="color:#aaa;">לא הצלחנו לטעון את הניתוח. נסה לרענן.</div>';
-      });
       });
     }
   }, 100);
