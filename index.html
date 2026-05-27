@@ -1430,38 +1430,27 @@ function showResults() {
     const scoreEl = document.getElementById('score-display');
     const ringEl = document.getElementById('score-ring-fill');
     const circumference = 408;
-    if (ringEl) ringEl.style.strokeDashoffset = circumference - (finalScore / 100) * circumference;
-    if (scoreEl) {
-      let displayScore = 0;
-      const timer = setInterval(() => {
-        displayScore = Math.min(displayScore + 2, finalScore);
-        scoreEl.textContent = displayScore;
-        if (displayScore >= finalScore) clearInterval(timer);
-      }, 20);
+    if (scoreEl) scoreEl.textContent = finalScore;
+    if (ringEl) {
+      void ringEl.getBoundingClientRect();
+      ringEl.style.strokeDashoffset = circumference - (finalScore / 100) * circumference;
     }
 
     const barsEl = document.getElementById('category-bars');
-    barsEl.innerHTML = '';
-    catOrder.forEach(cat => {
-      const pct = Math.round((catScores[cat].raw / catScores[cat].max) * 100);
-      const row = document.createElement('div');
-      row.className = 'cat-bar-row';
-      const q = questions.find(q => q.cat === cat);
-      row.innerHTML = `
-        <div class="cat-bar-label">
-          <span class="cat-bar-name">${q.icon} ${cat}</span>
-          <span class="cat-bar-pct">${pct}%</span>
-        </div>
-        <div class="cat-bar-track">
-          <div class="cat-bar-fill" data-pct="${pct}"></div>
-        </div>`;
-      barsEl.appendChild(row);
-    });
-    setTimeout(() => {
-      document.querySelectorAll('.cat-bar-fill').forEach(el => {
-        el.style.width = el.dataset.pct + '%';
+    if (barsEl) {
+      barsEl.innerHTML = '';
+      catOrder.forEach(cat => {
+        const pct = Math.round((catScores[cat].raw / catScores[cat].max) * 100);
+        const row = document.createElement('div');
+        row.className = 'cat-bar-row';
+        const q = questions.find(q => q.cat === cat);
+        row.innerHTML = `<div class="cat-bar-label"><span class="cat-bar-name">${q.icon} ${cat}</span><span class="cat-bar-pct">${pct}%</span></div><div class="cat-bar-track"><div class="cat-bar-fill" data-pct="${pct}"></div></div>`;
+        barsEl.appendChild(row);
       });
-    }, 100);
+      setTimeout(() => {
+        document.querySelectorAll('.cat-bar-fill').forEach(el => { el.style.width = el.dataset.pct + '%'; });
+      }, 100);
+    }
 
     // ===== COMPACT CATEGORY GRID =====
     const catGridEl = document.getElementById('cat-grid');
