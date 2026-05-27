@@ -1425,7 +1425,7 @@ function showResults() {
   setTimeout(() => {
     const level = levels.find(l => finalScore >= l.min && finalScore <= l.max) || levels[levels.length - 1];
     document.getElementById('result-level-badge').textContent = level.emoji + ' ' + level.title;
-    document.getElementById('result-description').textContent = level.desc;
+    const descEl = document.getElementById('result-description'); if (descEl) descEl.textContent = level.desc;
 
     const scoreEl = document.getElementById('score-display');
     const ringEl = document.getElementById('score-ring-fill');
