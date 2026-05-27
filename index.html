@@ -1530,9 +1530,12 @@ function sendToSheet(data) {
   if (a && a.length > 0) {
     answers = a.split('').map(c => c === 'x' ? null : parseInt(c));
     window._leadName = n ? decodeURIComponent(n) : '';
-    window.addEventListener('DOMContentLoaded', function() {
+    // DOM is already ready by the time inline scripts at bottom of body run
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', showResults);
+    } else {
       showResults();
-    });
+    }
   }
 })();
 
