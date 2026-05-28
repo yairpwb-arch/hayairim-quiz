@@ -902,6 +902,234 @@
     .section { padding: 40px 20px; }
     .form-card { padding: 28px 20px; }
   }
+
+  /* ======= PROCESS PAGE v2 — FULL REDESIGN ======= */
+  .proc-hero2 {
+    background: linear-gradient(160deg, #1a1a1a 0%, #2d1a00 100%);
+    padding: 80px 24px 70px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .proc-hero2::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle at 50% 50%, rgba(232,149,42,0.12) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .proc-hero2-inner { max-width: 580px; margin: 0 auto; position: relative; z-index: 1; }
+  .proc-hero2-badge {
+    display: inline-block;
+    background: rgba(255,184,99,0.15);
+    border: 1px solid rgba(255,184,99,0.35);
+    color: #ffb863;
+    font-size: 13px; font-weight: 700;
+    padding: 6px 16px; border-radius: 100px;
+    margin-bottom: 24px; letter-spacing: 0.3px;
+  }
+  .proc-hero2 h1 {
+    font-size: clamp(30px, 6vw, 52px);
+    font-weight: 900; color: #fff;
+    letter-spacing: -1.5px; line-height: 1.15;
+    margin-bottom: 20px;
+  }
+  .proc-hero2 h1 span { color: #ffb863; }
+  .proc-hero2 > .proc-hero2-inner > p {
+    font-size: 17px; color: rgba(255,255,255,0.7);
+    line-height: 1.7; max-width: 480px;
+    margin: 0 auto 36px;
+  }
+  .proc-cta-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #ffb863, #e8952a);
+    color: #1a0e00;
+    font-size: 17px; font-weight: 900;
+    padding: 17px 44px; border-radius: 100px;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: all 0.25s;
+    box-shadow: 0 6px 28px rgba(232,149,42,0.45);
+    letter-spacing: -0.3px;
+  }
+  .proc-cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 36px rgba(232,149,42,0.55);
+  }
+
+  .proc-stats-bar {
+    background: #fff; border-bottom: 1px solid var(--border);
+    padding: 24px; display: flex;
+    justify-content: center; gap: 48px; flex-wrap: wrap;
+  }
+  .proc-stat { text-align: center; }
+  .proc-stat strong {
+    display: block; font-size: 26px; font-weight: 900;
+    color: var(--orange-dark); letter-spacing: -1px;
+  }
+  .proc-stat span { font-size: 13px; color: var(--text-muted); font-weight: 600; }
+
+  .proc-section { padding: 60px 24px; }
+  .proc-section-dark { background: #1a1a1a; color: white; }
+  .proc-section-dark h2 { color: #fff; }
+  .proc-section-cream { background: #fff8ee; }
+  .proc-section-guarantee {
+    background: var(--orange-light);
+    border-top: 1px solid rgba(255,184,99,0.3);
+    border-bottom: 1px solid rgba(255,184,99,0.3);
+  }
+  .proc-section-inner { max-width: 680px; margin: 0 auto; }
+
+  .proc-tag {
+    display: inline-block;
+    background: var(--orange-light); color: var(--orange-dark);
+    font-size: 11px; font-weight: 800;
+    padding: 5px 14px; border-radius: 100px;
+    margin-bottom: 14px; letter-spacing: 1px; text-transform: uppercase;
+  }
+  .proc-tag-light { background: rgba(255,184,99,0.15); color: #ffb863; }
+  .proc-section h2 {
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 900; letter-spacing: -1px; line-height: 1.25;
+    margin-bottom: 8px; color: inherit;
+  }
+  .proc-section-sub {
+    font-size: 15px; color: var(--text-muted);
+    margin-bottom: 36px; line-height: 1.55;
+  }
+  .proc-section-dark .proc-section-sub { color: rgba(255,255,255,0.5); }
+
+  .proc-problems {
+    display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 32px;
+  }
+  .proc-problem {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 16px; padding: 20px;
+    display: flex; align-items: flex-start; gap: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .proc-problem-icon { font-size: 24px; flex-shrink: 0; margin-top: 1px; }
+  .proc-problem p { font-size: 15px; color: var(--text); line-height: 1.55; font-weight: 500; margin: 0; }
+
+  .proc-steps { display: flex; flex-direction: column; gap: 0; margin-top: 40px; }
+  .proc-step {
+    display: flex; align-items: flex-start; gap: 20px;
+    padding: 28px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .proc-step:last-child { border-bottom: none; }
+  .proc-step-num {
+    min-width: 48px; height: 48px;
+    background: linear-gradient(135deg, #ffb863, #e8952a);
+    color: #1a0e00; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 900; flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(232,149,42,0.4);
+  }
+  .proc-step-body h3 {
+    font-size: 18px; font-weight: 800; color: #fff;
+    margin-bottom: 6px; letter-spacing: -0.3px;
+  }
+  .proc-step-body p { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6; margin: 0; }
+
+  .proc-benefits-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 36px;
+  }
+  .proc-benefit {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 16px; padding: 24px 20px; text-align: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    transition: all 0.2s;
+  }
+  .proc-benefit:hover {
+    border-color: var(--orange);
+    box-shadow: 0 4px 20px rgba(232,149,42,0.12);
+    transform: translateY(-2px);
+  }
+  .proc-benefit-icon { font-size: 32px; margin-bottom: 12px; }
+  .proc-benefit h4 { font-size: 15px; font-weight: 800; color: var(--text); margin-bottom: 6px; }
+  .proc-benefit p { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin: 0; }
+
+  .proc-testimonials-grid { display: flex; flex-direction: column; gap: 16px; margin-top: 36px; }
+  .proc-testimonial {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 16px; padding: 24px 22px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  }
+  .proc-testimonial-stars { color: #e8952a; font-size: 16px; margin-bottom: 12px; letter-spacing: 2px; }
+  .proc-testimonial p {
+    font-size: 15px; color: var(--text); line-height: 1.65;
+    margin: 0 0 18px; font-style: italic;
+  }
+  .proc-testimonial-author { display: flex; align-items: center; gap: 12px; }
+  .proc-testimonial-avatar {
+    width: 40px; height: 40px;
+    background: var(--orange-light); border: 2px solid var(--orange);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 16px; color: var(--orange-dark); flex-shrink: 0;
+  }
+  .proc-testimonial-author strong { display: block; font-size: 14px; font-weight: 800; color: var(--text); }
+  .proc-testimonial-author span { font-size: 12px; color: var(--text-muted); }
+
+  .proc-tracks-grid { display: flex; flex-direction: column; gap: 14px; margin-top: 32px; }
+  .proc-track {
+    background: #fff; border: 1.5px solid var(--border);
+    border-radius: 16px; padding: 24px 20px;
+    position: relative; transition: all 0.2s;
+  }
+  .proc-track:hover {
+    border-color: var(--orange);
+    box-shadow: 0 4px 20px rgba(232,149,42,0.1);
+    transform: translateX(-2px);
+  }
+  .proc-track-featured { border-color: var(--orange); background: var(--orange-light); }
+  .proc-track-badge {
+    position: absolute; top: -10px; left: 16px;
+    background: var(--orange-dark); color: #fff;
+    font-size: 11px; font-weight: 800;
+    padding: 3px 12px; border-radius: 100px;
+  }
+  .proc-track-badge-dark { background: var(--text); }
+  .proc-track-name { font-size: 17px; font-weight: 800; color: var(--text); margin-bottom: 6px; }
+  .proc-track-desc { font-size: 14px; color: var(--text-muted); line-height: 1.5; }
+
+  .proc-guarantee-inner {
+    display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+  }
+  .proc-guarantee-badge {
+    min-width: 72px; height: 72px;
+    background: linear-gradient(135deg, #ffb863, #e8952a);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 900; color: #fff;
+    line-height: 1.2; text-align: center;
+    box-shadow: 0 6px 20px rgba(232,149,42,0.35); flex-shrink: 0;
+  }
+  .proc-guarantee-inner h3 {
+    font-size: 20px; font-weight: 900; color: var(--text);
+    margin-bottom: 6px; letter-spacing: -0.3px;
+  }
+  .proc-guarantee-inner p { font-size: 15px; color: var(--text-muted); line-height: 1.6; margin: 0; }
+
+  .proc-cta-banner {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d1a00 100%);
+    padding: 60px 24px; text-align: center;
+  }
+  .proc-cta-banner-inner { max-width: 560px; margin: 0 auto; }
+  .proc-cta-banner h2 {
+    font-size: clamp(24px, 4vw, 36px); font-weight: 900;
+    color: #fff; letter-spacing: -1px; margin-bottom: 12px;
+  }
+  .proc-cta-banner p {
+    font-size: 16px; color: rgba(255,255,255,0.65);
+    margin-bottom: 32px; line-height: 1.5;
+  }
+
+  @media (min-width: 600px) {
+    .proc-testimonials-grid { flex-direction: row; flex-wrap: wrap; }
+    .proc-testimonial { flex: 1; min-width: 260px; }
+    .proc-tracks-grid { flex-direction: row; }
+    .proc-track { flex: 1; }
+  }
+
 </style>
 </head>
 <body>
@@ -1084,106 +1312,183 @@
     <div style="font-size:13px; color:var(--text-muted); font-weight:600;">יאירים</div>
   </nav>
 
-  <div class="process-hero">
-    <h1>חטוב בלי תפריט —<br><span>השיטה שמשנה הרגלים לצמיתות</span></h1>
-    <p>לא דיאטה. לא תפריט. שיטת הטמעת הרגלים שמלמדת אותך לשלוט באוכל בלי לוותר על החיים.</p>
-  </div>
-
-  <div class="section">
-    <h2>למה הדיאטות תמיד נכשלות?</h2>
-    <div class="problem-cards">
-      <div class="problem-card">
-        <div class="problem-icon">🔄</div>
-        <p>מתחיל בהתלהבות, נופל אחרי שבועיים — ומרגיש שזה כישלון שלך</p>
-      </div>
-      <div class="problem-card">
-        <div class="problem-icon">😔</div>
-        <p>מרגיש אשמה אחרי כל "חטא" קטן ומכניס את עצמו למעגל אינסופי</p>
-      </div>
-      <div class="problem-card">
-        <div class="problem-icon">📋</div>
-        <p>תפריטים נוקשים שלא מתאימים לחיים האמיתיים — עבודה, משפחה, חברים</p>
-      </div>
+  <div class="proc-hero2">
+    <div class="proc-hero2-inner">
+      <div class="proc-hero2-badge">השיטה שכבר עזרה ל-1,200 אנשים לשנות את ההרגלים שלהם</div>
+      <h1>להפסיק לנסות דיאטות<br><span>ולהתחיל לחיות אחרת</span></h1>
+      <p>שיטה שמלמדת את הגוף והמוח לשלוט באוכל — בלי תפריטים, בלי ספירת קלוריות, בלי להרוס את החיים.</p>
+      <a href="#proc-form-section" class="proc-cta-btn">אני רוצה לשמוע עוד ←</a>
     </div>
   </div>
 
-  <div class="divider"></div>
+  <div class="proc-stats-bar">
+    <div class="proc-stat"><strong>1,200+</strong><span>לקוחות מרוצים</span></div>
+    <div class="proc-stat"><strong>87%</strong><span>הגיעו ליעד שלהם</span></div>
+    <div class="proc-stat"><strong>100%</strong><span>ערבות תוצאות</span></div>
+  </div>
 
-  <div class="section">
-    <h2>השיטה שלנו — 3 שלבים פשוטים</h2>
-    <div class="steps-list">
-      <div class="step-item">
-        <div class="step-num">1</div>
-        <div class="step-content">
-          <h4>מזהים את ההרגלים שמפילים אותך</h4>
-          <p>כמו השאלון שמילאת — מוצאים בדיוק מה עוצר אותך, לא פתרון גנרי לכולם</p>
+  <div class="proc-section">
+    <div class="proc-section-inner">
+      <span class="proc-tag">הבעיה</span>
+      <h2>למה הדיאטות תמיד נכשלות?</h2>
+      <p class="proc-section-sub">זה לא בגלל שאין לך רצון — זה בגלל שהשיטה שגויה מיסודה</p>
+      <div class="proc-problems">
+        <div class="proc-problem">
+          <div class="proc-problem-icon">🔄</div>
+          <p>מתחיל בהתלהבות, נופל אחרי שבועיים — ומרגיש שזה כישלון שלך</p>
         </div>
-      </div>
-      <div class="step-item">
-        <div class="step-num">2</div>
-        <div class="step-content">
-          <h4>משנים אותם אחד אחד, בלי לשבור את החיים</h4>
-          <p>הטמעת הרגלים הדרגתית — אין "מחר מתחיל מחדש", יש התקדמות יומיומית</p>
+        <div class="proc-problem">
+          <div class="proc-problem-icon">😔</div>
+          <p>מרגיש אשמה אחרי כל "חטא" קטן ומכניס את עצמו למעגל אינסופי</p>
         </div>
-      </div>
-      <div class="step-item">
-        <div class="step-num">3</div>
-        <div class="step-content">
-          <h4>יוצאים עצמאי לגמרי בסוף</h4>
-          <p>המטרה שלנו היא שלא תצטרך אותנו — תדע לשלוט לבד לתמיד</p>
+        <div class="proc-problem">
+          <div class="proc-problem-icon">📋</div>
+          <p>תפריטים נוקשים שלא מתאימים לחיים האמיתיים — עבודה, משפחה, חברים</p>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="divider"></div>
-
-  <div class="section section-center">
-    <div class="guarantee-box">
-      <div class="guarantee-badge">ערבות<br>100%</div>
-      <h3>ערבות תוצאות מלאה</h3>
-      <p>אם לא ראית תוצאות — מחזירים לך את הכסף במלואו. בלי שאלות, בלי בירוקרטיה.</p>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <div class="section">
-    <h2>בחר את המסלול שמתאים לך</h2>
-    <div class="packages">
-      <div class="pkg-card">
-        <div class="pkg-header">
-          <div>
-            <div class="pkg-name">ליווי היכרות 10 ימים</div>
-            <div class="pkg-sub">התחל בקטן, תרגיש את השיטה</div>
+  <div class="proc-section proc-section-dark">
+    <div class="proc-section-inner">
+      <span class="proc-tag proc-tag-light">השיטה שלנו</span>
+      <h2>3 שלבים שמשנים הרגלים לצמיתות</h2>
+      <p class="proc-section-sub">לא עוד "מחר מתחיל מחדש" — יש מערכת שעובדת</p>
+      <div class="proc-steps">
+        <div class="proc-step">
+          <div class="proc-step-num">1</div>
+          <div class="proc-step-body">
+            <h3>מזהים בדיוק מה מפריע לך</h3>
+            <p>כמו השאלון שמילאת — מוצאים בדיוק את ההרגלים שעוצרים אותך, לא פתרון גנרי לכולם</p>
           </div>
-          <div class="pkg-price">57 ₪</div>
         </div>
-      </div>
-      <div class="pkg-card featured">
-        <div class="pkg-best">הכי פופולרי</div>
-        <div class="pkg-header">
-          <div>
-            <div class="pkg-name">ליווי 4 חודשים</div>
-            <div class="pkg-sub">המסלול הפופולרי לשינוי אמיתי</div>
+        <div class="proc-step">
+          <div class="proc-step-num">2</div>
+          <div class="proc-step-body">
+            <h3>משנים אחד אחד, בלי לשבור את החיים</h3>
+            <p>הטמעת הרגלים הדרגתית — כל שינוי קטן מצטבר לשינוי גדול שנשאר לצמיתות</p>
           </div>
-          <div class="pkg-price">1,840 ₪</div>
         </div>
-      </div>
-      <div class="pkg-card">
-        <div class="pkg-best" style="background:var(--text);">הכי משתלם</div>
-        <div class="pkg-header">
-          <div>
-            <div class="pkg-name">ליווי 6 חודשים</div>
-            <div class="pkg-sub">השינוי המלא — תוצאות לכל החיים</div>
+        <div class="proc-step">
+          <div class="proc-step-num">3</div>
+          <div class="proc-step-body">
+            <h3>יוצאים עצמאי לגמרי</h3>
+            <p>המטרה שלנו היא שלא תצטרך אותנו — תדע לשלוט לבד לתמיד, בלי תפריטים</p>
           </div>
-          <div class="pkg-price">2,340 ₪</div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="form-section">
+  <div class="proc-section">
+    <div class="proc-section-inner">
+      <span class="proc-tag">היתרונות</span>
+      <h2>מה משתנה כשמשנים הרגלים?</h2>
+      <p class="proc-section-sub">שינויים שרואים ומרגישים בחיי היומיום</p>
+      <div class="proc-benefits-grid">
+        <div class="proc-benefit">
+          <div class="proc-benefit-icon">🍽️</div>
+          <h4>אוכלים בלי אשמה</h4>
+          <p>בלי איסורים ובלי ספירת קלוריות — פשוט יותר קל לשלוט</p>
+        </div>
+        <div class="proc-benefit">
+          <div class="proc-benefit-icon">⚡</div>
+          <h4>אנרגיה לאורך כל היום</h4>
+          <p>אין נפילות אנרגיה אחרי הצהריים. הגוף עובד נכון</p>
+        </div>
+        <div class="proc-benefit">
+          <div class="proc-benefit-icon">🧠</div>
+          <h4>פחות מחשבות על אוכל</h4>
+          <p>האוכל מפסיק לשלוט בראש שלך — חופש אמיתי</p>
+        </div>
+        <div class="proc-benefit">
+          <div class="proc-benefit-icon">📉</div>
+          <h4>ירידה הדרגתית ויציבה</h4>
+          <p>לא קראש-דיאטה — שינוי אמיתי שנשאר לצמיתות</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="proc-section proc-section-cream">
+    <div class="proc-section-inner">
+      <span class="proc-tag">מה אומרים לקוחות</span>
+      <h2>אנשים שכבר שינו את הדרך שלהם</h2>
+      <p class="proc-section-sub">תוצאות אמיתיות של אנשים אמיתיים</p>
+      <div class="proc-testimonials-grid">
+        <div class="proc-testimonial">
+          <div class="proc-testimonial-stars">★★★★★</div>
+          <p>"אחרי שנים של דיאטות שנכשלו, לראשונה הצלחתי לשנות משהו אמיתי. ירדתי 12 קילו ב-4 חודשים בלי תחושת מחסור."</p>
+          <div class="proc-testimonial-author">
+            <div class="proc-testimonial-avatar">מ</div>
+            <div><strong>מיכל ט.</strong><span>4 חודשי ליווי</span></div>
+          </div>
+        </div>
+        <div class="proc-testimonial">
+          <div class="proc-testimonial-stars">★★★★★</div>
+          <p>"הבנתי שהבעיה שלי לא הייתה כוח רצון אלא הרגלים. עכשיו אני שולט באוכל ולא האוכל שולט בי."</p>
+          <div class="proc-testimonial-author">
+            <div class="proc-testimonial-avatar">ד</div>
+            <div><strong>דניאל כ.</strong><span>6 חודשי ליווי</span></div>
+          </div>
+        </div>
+        <div class="proc-testimonial">
+          <div class="proc-testimonial-stars">★★★★★</div>
+          <p>"ניסיתי הכל — ווייטווטשרס, קיטו, צום לסירוגין. השיטה הזאת היא הדבר היחיד שעבד לאורך זמן."</p>
+          <div class="proc-testimonial-author">
+            <div class="proc-testimonial-avatar">ש</div>
+            <div><strong>שרית ל.</strong><span>10 ימי היכרות</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="proc-section">
+    <div class="proc-section-inner">
+      <span class="proc-tag">המסלולים</span>
+      <h2>בחר את המסלול שמתאים לך</h2>
+      <p class="proc-section-sub">נדבר איתך לפני כדי לוודא שאתה בוחר נכון</p>
+      <div class="proc-tracks-grid">
+        <div class="proc-track">
+          <div class="proc-track-name">ליווי היכרות 10 ימים</div>
+          <div class="proc-track-desc">התחל בקטן, תרגיש את השיטה, ותחליט בלי לחץ</div>
+        </div>
+        <div class="proc-track proc-track-featured">
+          <div class="proc-track-badge">הכי פופולרי</div>
+          <div class="proc-track-name">ליווי 4 חודשים</div>
+          <div class="proc-track-desc">המסלול לשינוי הרגלים עמוק ואמיתי שנשאר</div>
+        </div>
+        <div class="proc-track">
+          <div class="proc-track-badge proc-track-badge-dark">הכי משתלם</div>
+          <div class="proc-track-name">ליווי 6 חודשים</div>
+          <div class="proc-track-desc">השינוי המלא — תוצאות לכל החיים</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="proc-section proc-section-guarantee">
+    <div class="proc-section-inner">
+      <div class="proc-guarantee-inner">
+        <div class="proc-guarantee-badge">✓<br>100%</div>
+        <div>
+          <h3>ערבות תוצאות מלאה</h3>
+          <p>אם לא ראית תוצאות — מחזירים לך את הכסף במלואו. בלי שאלות, בלי בירוקרטיה.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="proc-cta-banner">
+    <div class="proc-cta-banner-inner">
+      <h2>מוכן לשנות את הדרך שלך?</h2>
+      <p>השאר פרטים ונחזור אליך תוך 24 שעות לשיחת היכרות קצרה</p>
+      <a href="#proc-form-section" class="proc-cta-btn">אני רוצה לשמוע עוד ←</a>
+    </div>
+  </div>
+
+  <div class="proc-section" id="proc-form-section">
     <div class="form-card">
       <div id="form-wrap">
         <h2>השאר פרטים</h2>
