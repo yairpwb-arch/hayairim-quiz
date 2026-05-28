@@ -970,7 +970,7 @@
   .proc-stat span { font-size: 13px; color: var(--text-muted); font-weight: 600; }
 
   .proc-section { padding: 64px 24px 72px; width: 100%; box-sizing: border-box; }
-  .proc-section-dark { background: #1a1a1a; color: white; }
+  .proc-section-dark { background: #1a1a1a; color: white; padding-top: 36px; }
   .proc-section-dark h2 { color: #fff; }
   .proc-section-cream { background: #fff8ee; }
   .proc-section-guarantee {
@@ -1144,15 +1144,22 @@
 
   /* ===== SOCIAL PROOF BAR ===== */
   .proc-hero-proof {
-    display: flex; justify-content: center;
-    gap: 10px; margin-top: 28px; flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px; margin-top: 28px;
+    max-width: 280px; margin-right: auto; margin-left: auto;
   }
   .proc-hero-proof-item {
     display: flex; flex-direction: column; align-items: center; gap: 10px;
     background: rgba(255,255,255,0.06);
     border: 2px solid rgba(255,184,99,0.4);
     border-radius: 12px;
-    padding: 16px 14px; min-width: 100px; flex: 1; max-width: 130px;
+    padding: 16px 14px;
+  }
+  .proc-hero-proof-item:nth-child(3) {
+    grid-column: 1 / -1;
+    width: calc(50% - 5px);
+    margin: 0 auto;
   }
   .proc-hero-proof-num {
     width: 32px; height: 32px;
@@ -1404,8 +1411,6 @@
   </div>
 
   <div class="proc-section">
-    <div class="proc-section-inner">
-    <div class="proc-section-inner" style="text-align:center;">
     <div class="proc-section-inner" style="text-align:center;">
       <h2 style="margin-bottom:14px;">למה כל הניסיונות הקודמים לא עבדו?</h2>
       <div class="proc-problems" style="text-align:right;">
@@ -1429,7 +1434,7 @@
     <div class="proc-section-inner">
       <span class="proc-tag proc-tag-light">השיטה שלנו</span>
       <h2>3 שלבים שמשנים הרגלים לצמיתות</h2>
-      <p class=proc-section-sub>מוצאים בדיוק מה עוצר אותך — ומשנים את זה הדרגתית עד שאתה שולט לגמרי לבד</p>
+      <p class="proc-section-sub">מוצאים בדיוק מה עוצר אותך — ומשנים את זה הדרגתית עד שאתה שולט לגמרי לבד</p>
       <div class="proc-steps">
         <div class="proc-step proc-animate proc-animate-delay-1">
           <div class="proc-step-num">1</div>
@@ -1560,15 +1565,8 @@
 
 
 
-  <div class="proc-cta-banner">
-    <div class="proc-cta-banner-inner proc-animate">
-      <h2>מוכן להפסיק לנסות — ולהתחיל להצליח?</h2>
-      <p>שיחת יעוץ חינמית — בה נעבור על ההרגלים שלך ונבין ביחד מה אפשר לעשות</p>
-      <a href="#proc-form-section" class="proc-cta-btn">קבל שיחת ייעוץ חינמית ←</a>
-    </div>
-  </div>
 
-  <div class="proc-section" id="proc-form-section">
+<div class="proc-section" id="proc-form-section">
     <div class="form-card">
       <div id="form-wrap">
         <h2>קבל שיחת ייעוץ חינמית</h2>
