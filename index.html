@@ -1713,10 +1713,10 @@ async function submitPreDetails() {
   window._leadPhone = phone;
   window._leadEmail = email;
 
-  // Show loading state on button
+  // Disable button
   const btn = document.getElementById('submit-details-btn');
   btn.disabled = true;
-  btn.innerHTML = '<span style="display:flex;align-items:center;gap:8px;justify-content:center">⏳ מכין את הניתוח שלך...</span>';
+  btn.innerHTML = '<span style="display:flex;align-items:center;gap:8px;justify-content:center">⏳ שולח...</span>';
 
   // Calculate score
   const maxScore = questions.reduce((sum, q) => sum + Math.max(...q.scores), 0);
@@ -1731,31 +1731,33 @@ async function submitPreDetails() {
   const calcTopCat = catOrder.reduce((a, b) =>
     (catScoresTemp[a].raw / catScoresTemp[a].max) <= (catScoresTemp[b].raw / catScoresTemp[b].max) ? a : b
   );
-
-  // Build category scores object
   const catPcts = {};
   catOrder.forEach(c => {
     catPcts[c] = Math.round((catScoresTemp[c].raw / catScoresTemp[c].max) * 100);
   });
 
-  // Get AI analysis with 8s timeout — always continues even on failure
-  let aiAnalysis = '';
-  try {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 8000);
-    const aiResp = await fetch('/api/analyze', {
+  // Encode answers — used as cache key
+  const encodedAnswers = answers.map(a => a !== null ? a : 'x').join('');
+  const cacheKey = 'analysis_' + encodedAnswers;
+
+  // Fire AI call in background — save to localStorage when done, never call again
+  if (!localStorage.getItem(cacheKey)) {
+    fetch('/api/analyze', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, score: calcScore, categories: catPcts }),
-      signal: controller.signal
-    });
-    clearTimeout(timeout);
-    const aiData = await aiResp.json();
-    aiAnalysis = aiData.analysis || '';
-    window._leadAnalysis = aiAnalysis;
-  } catch(e) { console.log('AI skipped:', e.message); }
+      body: JSON.stringify({ name, score: calcScore, categories: catPcts })
+    })
+    .then(r => r.json())
+    .then(data => {
+      if (data.analysis) {
+        window._leadAnalysis = data.analysis;
+        try { localStorage.setItem(cacheKey, data.analysis); } catch(e) {}
+      }
+    })
+    .catch(e => console.log('AI error:', e));
+  }
 
-  // Send to Google Sheet with full details
+  // Send to Google Sheet
   sendToSheet({
     timestamp: new Date().toLocaleString('he-IL'),
     name, phone, email,
@@ -1765,15 +1767,11 @@ async function submitPreDetails() {
     'שליטה בכמויות': catPcts['שליטה בכמויות'] + '%',
     'שינה ואנרגיה': catPcts['שינה ואנרגיה'] + '%',
     'פעילות גופנית': catPcts['פעילות גופנית'] + '%',
-    'מנטליות בריאה': catPcts['מנטליות בריאה'] + '%',
-    analysis: aiAnalysis
+    'מנטליות בריאה': catPcts['מנטליות בריאה'] + '%'
   });
 
-  // Encode answers for URL
-  const encodedAnswers = answers.map(a => a !== null ? a : 'x').join('');
+  // Send email with results link
   const resultsUrl = 'https://hayairim-quiz.vercel.app' + window.location.pathname + '?a=' + encodedAnswers + '&n=' + encodeURIComponent(name);
-
-  // Send email via EmailJS
   emailjs.init('yJ9Sa-WFIg4-9uIcr');
   emailjs.send('service_e56vqzc', 'template_xfmuw6l', {
     name: name,
@@ -1781,11 +1779,9 @@ async function submitPreDetails() {
     results_url: resultsUrl
   }).catch(err => console.log('EmailJS error:', err));
 
-  // Send email in background (for user's reference), but show results immediately
+  // Show email-sent page immediately
   document.getElementById('email-sent-to').textContent = email;
-
-  // Go directly to results — analysis is already in window._leadAnalysis
-  showResults();
+  showPage('page-email-sent');
 }
 
 function showResults() {
@@ -1860,31 +1856,28 @@ function showResults() {
 
     // ===== AI ANALYSIS =====
     const analysisEl = document.getElementById('ai-analysis');
-    const fromEmailLink = !!new URLSearchParams(window.location.search).get('a');
     if (window._leadAnalysis) {
       analysisEl.innerHTML = '<div class="ai-text">' + window._leadAnalysis.replace(/\n/g,'<br>') + '</div>';
-    } else if (!fromEmailLink) {
-      const catScoresForAI = {};
-      catOrder.forEach(cat => {
-        catScoresForAI[cat] = Math.round((catScores[cat].raw / catScores[cat].max) * 100);
-      });
-      fetch('/api/analyze', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: window._leadName || 'חבר', score: finalScore, categories: catScoresForAI })
-      })
-      .then(r => r.json())
-      .then(data => {
-        if (data.analysis) {
-          window._leadAnalysis = data.analysis;
-          analysisEl.innerHTML = '<div class="ai-text">' + data.analysis.replace(/\n/g,'<br>') + '</div>';
-        } else {
-          analysisEl.innerHTML = '<div class="ai-text" style="color:#999;">הניתוח אינו זמין כרגע.</div>';
+    } else {
+      // Analysis not ready yet — show loading dots, poll localStorage every second
+      let pollCount = 0;
+      const encodedNow = answers.map(a => a !== null ? a : 'x').join('');
+      const poll = setInterval(() => {
+        pollCount++;
+        try {
+          const cached = localStorage.getItem('analysis_' + encodedNow);
+          if (cached) {
+            clearInterval(poll);
+            window._leadAnalysis = cached;
+            analysisEl.innerHTML = '<div class="ai-text">' + cached.replace(/\n/g,'<br>') + '</div>';
+            return;
+          }
+        } catch(e) {}
+        if (pollCount >= 30) { // give up after 30s
+          clearInterval(poll);
+          analysisEl.innerHTML = '<div class="ai-text" style="color:#aaa;">הניתוח מגיע בקרוב — רענן את הדף.</div>';
         }
-      })
-      .catch(() => {
-        analysisEl.innerHTML = '<div class="ai-text" style="color:#aaa;">לא הצלחנו לטעון את הניתוח. נסה לרענן.</div>';
-      });
+      }, 1000);
     }
   }, 100);
 }
@@ -1912,7 +1905,11 @@ function sendToSheet(data) {
   if (a && a.length > 0) {
     answers = a.split('').map(c => c === 'x' ? null : parseInt(c));
     window._leadName = n ? decodeURIComponent(n) : '';
-    // DOM is already ready by the time inline scripts at bottom of body run
+    // Load cached analysis from localStorage — no second AI call
+    try {
+      const cached = localStorage.getItem('analysis_' + a);
+      if (cached) window._leadAnalysis = cached;
+    } catch(e) {}
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', showResults);
     } else {
