@@ -1008,7 +1008,7 @@
     display: flex; align-items: flex-start; gap: 14px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   }
-  .proc-problem-icon { font-size: 24px; flex-shrink: 0; margin-top: 1px; }
+  .proc-problem-icon { width: 40px; height: 40px; flex-shrink: 0; background: var(--orange-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
   .proc-problem p { font-size: 15px; color: var(--text); line-height: 1.55; font-weight: 500; margin: 0; }
 
   .proc-steps { display: flex; flex-direction: column; gap: 0; margin-top: 40px; }
@@ -1322,21 +1322,21 @@
 
   <div class="proc-section">
     <div class="proc-section-inner">
-      <span class="proc-tag">הבעיה</span>
-      <h2>למה התפריטים תמיד נכשלים?</h2>
-      <p class="proc-section-sub">זה לא בגלל שאין לך רצון — זה בגלל שהשיטה שגויה מיסודה</p>
-      <div class="proc-problems">
+    <div class="proc-section-inner" style="text-align:center;">
+      <h2 style="margin-bottom:14px;">למה התפריטים לא עובדים?</h2>
+      <p class="proc-section-sub" style="margin-bottom:36px;">זה לא בגלל שאין לך כוח רצון — זה בגלל שהשיטה שגויה מהיסוד</p>
+      <div class="proc-problems" style="text-align:right;">
         <div class="proc-problem">
-          <div class="proc-problem-icon">🔄</div>
-          <p>מתחיל בהתלהבות, נופל אחרי שבועיים — ומרגיש שזה כישלון שלך</p>
+          <div class="proc-problem-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e8952a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+          <p>התחלת מהר מדיי ולא באופן הדרגתי, ובגלל זה מאוד קשה להתמיד לאורך זמן</p>
         </div>
         <div class="proc-problem">
-          <div class="proc-problem-icon">😔</div>
-          <p>מרגיש אשמה אחרי כל "חטא" קטן ומכניס את עצמו למעגל אינסופי</p>
+          <div class="proc-problem-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e8952a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg></div>
+          <p>אסרת על עצמך דברים שאתה אוהב, והכרחת את עצמך לעשות דברים שאתה שונא</p>
         </div>
         <div class="proc-problem">
-          <div class="proc-problem-icon">📋</div>
-          <p>תפריטים נוקשים שלא מתאימים לחיים האמיתיים — עבודה, משפחה, חברים</p>
+          <div class="proc-problem-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e8952a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
+          <p>לא באמת הרגלת את הגוף למשהו חדש ולכן זה בלתי אפשרי לשמור על התוצאה</p>
         </div>
       </div>
     </div>
