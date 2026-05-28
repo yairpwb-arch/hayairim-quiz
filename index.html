@@ -971,12 +971,15 @@
 
   .proc-section { padding: 48px 24px 52px; width: 100%; box-sizing: border-box; }
   .proc-section-dark { background: #1a1a1a; color: white; padding-top: 36px; }
-  #proc-form-section { background: linear-gradient(160deg, #1a0e00 0%, #2d1800 60%, #1a0e00 100%); }
+  #proc-form-section { background: transparent; }
   .proc-section-dark h2 { color: #fff; }
   .proc-section-cream { background: #fff8ee; }
   .proc-section-guarantee {
-    background: linear-gradient(160deg, #1a0e00 0%, #2d1800 60%, #1a0e00 100%);
+    background: transparent;
     padding: 64px 24px 72px; text-align: center; position: relative; overflow: hidden;
+  }
+  .proc-dark-wrapper {
+    background: linear-gradient(180deg, #1a0e00 0%, #2d1800 40%, #2d1800 60%, #1a0e00 100%);
   }
 
   .proc-section-inner { max-width: 680px; margin: 0 auto; width: 100%; box-sizing: border-box; }
@@ -1416,7 +1419,7 @@
       <h2 style="margin-bottom:14px;">למה כל הניסיונות הקודמים לא עבדו?</h2>
       <div class="proc-problems" style="text-align:right;">
         <div class="proc-problem proc-animate proc-animate-delay-1">
-          <div class="proc-problem-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e8952a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+          <div class="proc-problem-icon" style="font-size:20px;">🏃</div>
           <p>התחלת מהר מדיי ולא באופן הדרגתי, ובגלל זה מאוד קשה להתמיד לאורך זמן</p>
         </div>
         <div class="proc-problem proc-animate proc-animate-delay-2">
@@ -1553,6 +1556,7 @@
   </div>
 
 
+  <div class="proc-dark-wrapper">
   <div class="proc-section-guarantee">
     <div class="proc-section-inner">
       <div class="proc-guarantee-inner proc-animate">
@@ -1563,10 +1567,7 @@
     </div>
   </div>
 
-
-
-
-<div class="proc-section" id="proc-form-section">
+  <div class="proc-section" id="proc-form-section">
     <div class="form-card">
       <div id="form-wrap">
         <h2>מוכן להפסיק לנסות — ולהתחיל להצליח?</h2>
@@ -1588,6 +1589,7 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <script>
