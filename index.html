@@ -974,10 +974,10 @@
   .proc-section-dark h2 { color: #fff; }
   .proc-section-cream { background: #fff8ee; }
   .proc-section-guarantee {
-    background: var(--orange-light);
-    border-top: 1px solid rgba(255,184,99,0.3);
-    border-bottom: 1px solid rgba(255,184,99,0.3);
+    background: linear-gradient(160deg, #1a0e00 0%, #2d1800 60%, #1a0e00 100%);
+    padding: 64px 24px 72px; text-align: center; position: relative; overflow: hidden;
   }
+
   .proc-section-inner { max-width: 680px; margin: 0 auto; width: 100%; box-sizing: border-box; }
 
   .proc-tag {
@@ -1106,21 +1106,21 @@
   .proc-track-desc { font-size: 14px; color: var(--text-muted); line-height: 1.5; }
 
   .proc-guarantee-inner {
-    display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+    display: flex; flex-direction: column; align-items: center; gap: 16px;
+    position: relative; z-index: 1;
   }
-  .proc-guarantee-badge {
-    min-width: 72px; height: 72px;
-    background: linear-gradient(135deg, #ffb863, #e8952a);
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    font-size: 13px; font-weight: 900; color: #fff;
-    line-height: 1.2; text-align: center;
-    box-shadow: 0 6px 20px rgba(232,149,42,0.35); flex-shrink: 0;
+  .proc-guarantee-shield {
+    font-size: 56px; line-height: 1; margin-bottom: 4px;
   }
   .proc-guarantee-inner h3 {
-    font-size: 20px; font-weight: 900; color: var(--text);
-    margin-bottom: 6px; letter-spacing: -0.3px;
+    font-size: clamp(22px, 5vw, 30px); font-weight: 900; color: #fff;
+    margin: 0; letter-spacing: -0.5px; line-height: 1.25; direction: rtl;
   }
-  .proc-guarantee-inner p { font-size: 15px; color: var(--text-muted); line-height: 1.6; margin: 0; }
+  .proc-guarantee-inner h3 span { color: #ffb863; }
+  .proc-guarantee-inner p {
+    font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.6;
+    margin: 0; max-width: 360px; direction: rtl;
+  }
 
   .proc-cta-banner {
     background: linear-gradient(135deg, #1a1a1a 0%, #2d1a00 100%);
@@ -1144,12 +1144,26 @@
 
   /* ===== SOCIAL PROOF BAR ===== */
   .proc-hero-proof {
-    display: flex; flex-wrap: wrap; justify-content: center;
-    gap: 16px; margin-top: 20px;
+    display: flex; justify-content: center;
+    gap: 10px; margin-top: 28px; flex-wrap: wrap;
   }
-  .proc-hero-proof span {
-    font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.75);
-    letter-spacing: 0.3px;
+  .proc-hero-proof-item {
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    background: rgba(255,255,255,0.06);
+    border: 2px solid rgba(255,184,99,0.4);
+    border-radius: 12px;
+    padding: 16px 14px; min-width: 100px; flex: 1; max-width: 130px;
+  }
+  .proc-hero-proof-num {
+    width: 32px; height: 32px;
+    background: linear-gradient(135deg, #ffb863, #e8952a);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 900; color: #1a0e00; line-height: 1;
+  }
+  .proc-hero-proof-item span {
+    font-size: 13px; font-weight: 800; color: #fff;
+    text-align: center; line-height: 1.35;
   }
 
   /* ===== SCROLL ANIMATIONS ===== */
@@ -1381,10 +1395,10 @@
       <h1>להפסיק לנסות תפריטים<br><span>ולהתחיל לחיות אחרת</span></h1>
       <p>תאכל מה שאתה אוהב, תרד במשקל בהדרגה, ותשמור על זה — בלי תפריטים, בלי ספירת קלוריות, ובלי לשנות את כל השגרה שלך</p>
       <a href="#proc-form-section" class="proc-cta-btn">קבל שיחת ייעוץ חינמית ←</a>
-      <div class=proc-hero-proof>
-        <div class=proc-hero-proof-item><div class=proc-hero-proof-num>1</div><span>מאות לקוחות שינו</span></div>
-        <div class=proc-hero-proof-item><div class=proc-hero-proof-num>2</div><span>החזר כספי מלא</span></div>
-        <div class=proc-hero-proof-item><div class=proc-hero-proof-num>3</div><span>בלי התחייבות</span></div>
+      <div class="proc-hero-proof">
+        <div class="proc-hero-proof-item"><div class="proc-hero-proof-num">1</div><span>מאות לקוחות שינו</span></div>
+        <div class="proc-hero-proof-item"><div class="proc-hero-proof-num">2</div><span>החזר כספי מלא</span></div>
+        <div class="proc-hero-proof-item"><div class="proc-hero-proof-num">3</div><span>בלי התחייבות</span></div>
       </div>
     </div>
   </div>
@@ -1530,27 +1544,20 @@
           </div>
         </div>
       </div>
-        <div class=proc-testi-card>
-          <img src=trans-male3.jpg alt=אבי ש. />
-          <div class=proc-testi-caption>
-            <strong>אבי ש.</strong>
-            <p>&quot;לא האמנתי שאפשר לשנות הרגלים של שנים. ירדתי 11 קילו תוך 3 חודשים.&quot;</p>
-          </div>
-        </div>
     </div>
   </div>
 
 
-  <div class=proc-section-guarantee>
-    <div class=proc-section-inner>
-      <div class=proc-guarantee-inner proc-animate>
-        <div class=proc-guarantee-shield>🛡️</div>
-        <h3>התחייבות לתוצאות</h3>
-        <h3 style=font-size: clamp(14px,3.5vw,18px); font-weight:700; color: #ffb863; margin-top:-10px; margin-bottom:0;>או החזר כספי מלא</h3>
+  <div class="proc-section-guarantee">
+    <div class="proc-section-inner">
+      <div class="proc-guarantee-inner proc-animate">
+        <div class="proc-guarantee-shield">🛡️</div>
+        <h3>התחייבות לתוצאות — <span>או החזר כספי מלא</span></h3>
         <p>אם לא הגעת לתוצאות שקבענו מהתחלה, קיבלת את כל הכסף שלך חזרה — ללא שאלות</p>
       </div>
     </div>
   </div>
+
 
 
   <div class="proc-cta-banner">
