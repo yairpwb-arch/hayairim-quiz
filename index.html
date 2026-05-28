@@ -1592,8 +1592,8 @@
       </div>
       <div class="thank-you" id="thank-you-msg">
         <div class="check-circle">✅</div>
-        <h3>תודה! קיבלנו את הפרטים שלך 🎉</h3>
-        <p>נחזור אליך בהקדם לשיחת היכרות קצרה ונראה איך אנחנו יכולים לעזור.</p>
+        <h3>הפרטים נשלחו בהצלחה!</h3>
+        <p>נחזור אליך בהקדם לשיחת ייעוץ חינמית.</p>
       </div>
     </div>
   </div>
@@ -1929,7 +1929,8 @@ function submitForm() {
     timestamp: new Date().toLocaleString('he-IL'),
     name, phone, email,
     score: finalScore,
-    topCategory: topCat
+    topCategory: topCat,
+    source: 'ליד — מעוניין בתוכנית ליווי (טופס דף תהליך)'
   };
 
   sendToSheet(data);
