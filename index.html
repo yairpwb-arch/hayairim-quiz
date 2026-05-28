@@ -1944,8 +1944,8 @@ function sendToSheet(data) {
 
 
 function submitForm() {
-  const name = window._leadName || document.getElementById('lead-name').value.trim();
-  const phone = window._leadPhone || document.getElementById('lead-phone').value.trim();
+  const name = document.getElementById('lead-name').value.trim() || window._leadName;
+  const phone = document.getElementById('lead-phone').value.trim() || window._leadPhone;
   const email = window._leadEmail || '';
   if (!name || !phone) { alert('נא למלא שם וטלפון'); return; }
 
