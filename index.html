@@ -1167,10 +1167,10 @@
 
   /* ===== TESTIMONIALS MARQUEE ===== */
   .proc-testi-section { padding: 60px 0 72px; background: #fff8ee; overflow: hidden; }
-  .proc-testi-overflow { overflow: hidden; width: 100%; }
+  .proc-testi-overflow { overflow: hidden; width: 100%; direction: ltr; }
   .proc-testi-track {
     display: flex; gap: 16px; width: max-content;
-    animation: testiScroll 22s linear infinite;
+    animation: testiScroll 30s linear infinite;
     direction: ltr; padding: 4px 24px 12px;
   }
   .proc-testi-track:hover { animation-play-state: paused; }
@@ -1184,7 +1184,7 @@
     box-shadow: 0 4px 24px rgba(0,0,0,0.09);
     direction: rtl;
   }
-  .proc-testi-card img { width: 100%; height: auto; display: block; }
+  .proc-testi-card img { width: 100%; max-height: 300px; object-fit: cover; object-position: top; display: block; }
   .proc-testi-caption { padding: 14px 16px 18px; }
   .proc-testi-caption strong {
     display: block; font-size: 14px; font-weight: 800;
