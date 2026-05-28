@@ -1148,33 +1148,25 @@
 
   /* ===== SOCIAL PROOF BAR ===== */
   .proc-hero-proof {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px; margin-top: 28px;
-    max-width: 280px; margin-right: auto; margin-left: auto;
+    display: flex; flex-direction: row;
+    gap: 8px; margin-top: 28px;
+    justify-content: center; direction: rtl;
   }
   .proc-hero-proof-item {
-    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
     background: rgba(255,255,255,0.06);
     border: 2px solid rgba(255,184,99,0.4);
     border-radius: 12px;
-    padding: 16px 14px;
+    padding: 14px 8px; flex: 1; min-width: 0;
   }
-  .proc-hero-proof-item:nth-child(3) {
-    grid-column: 1 / -1;
-    width: calc(50% - 5px);
-    margin: 0 auto;
+  .proc-hero-proof-big {
+    font-size: clamp(22px, 5vw, 28px); font-weight: 900;
+    color: #ffb863; line-height: 1;
   }
-  .proc-hero-proof-num {
-    width: 32px; height: 32px;
-    background: linear-gradient(135deg, #ffb863, #e8952a);
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px; font-weight: 900; color: #1a0e00; line-height: 1;
-  }
-  .proc-hero-proof-item span {
-    font-size: 13px; font-weight: 800; color: #fff;
-    text-align: center; line-height: 1.35;
+  .proc-hero-proof-label {
+    font-size: 11px; font-weight: 700;
+    color: rgba(255,255,255,0.85);
+    text-align: center; line-height: 1.3; direction: rtl;
   }
 
   /* ===== SCROLL ANIMATIONS ===== */
@@ -1407,9 +1399,18 @@
       <p>תאכל מה שאתה אוהב, תרד במשקל בהדרגה, ותשמור על זה — בלי תפריטים, בלי ספירת קלוריות, ובלי לשנות את כל השגרה שלך</p>
       <a href="#proc-form-section" class="proc-cta-btn">קבל שיחת ייעוץ חינמית ←</a>
       <div class="proc-hero-proof">
-        <div class="proc-hero-proof-item"><div class="proc-hero-proof-num">1</div><span>מאות לקוחות שינו</span></div>
-        <div class="proc-hero-proof-item"><div class="proc-hero-proof-num">2</div><span>החזר כספי מלא</span></div>
-        <div class="proc-hero-proof-item"><div class="proc-hero-proof-num">3</div><span>בלי התחייבות</span></div>
+        <div class="proc-hero-proof-item">
+          <span class="proc-hero-proof-big">100+</span>
+          <span class="proc-hero-proof-label">לקוחות שינו הרגלים</span>
+        </div>
+        <div class="proc-hero-proof-item">
+          <span class="proc-hero-proof-big">100%</span>
+          <span class="proc-hero-proof-label">התחייבות לתוצאות</span>
+        </div>
+        <div class="proc-hero-proof-item">
+          <span class="proc-hero-proof-big">0</span>
+          <span class="proc-hero-proof-label">תפריטים — רק הרגלים</span>
+        </div>
       </div>
     </div>
   </div>
