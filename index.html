@@ -1142,6 +1142,29 @@
   }
 
 
+  /* ===== SOCIAL PROOF BAR ===== */
+  .proc-hero-proof {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 16px; margin-top: 20px;
+  }
+  .proc-hero-proof span {
+    font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.75);
+    letter-spacing: 0.3px;
+  }
+
+  /* ===== SCROLL ANIMATIONS ===== */
+  .proc-animate {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .proc-animate.visible {
+    opacity: 1; transform: translateY(0);
+  }
+  .proc-animate-delay-1 { transition-delay: 0.1s; }
+  .proc-animate-delay-2 { transition-delay: 0.2s; }
+  .proc-animate-delay-3 { transition-delay: 0.3s; }
+  .proc-animate-delay-4 { transition-delay: 0.4s; }
+
   /* ===== TESTIMONIALS MARQUEE ===== */
   .proc-testi-section { padding: 60px 0 72px; background: #fff8ee; overflow: hidden; }
   .proc-testi-overflow { overflow: hidden; width: 100%; }
@@ -1356,26 +1379,31 @@
   <div class="proc-hero2">
     <div class="proc-hero2-inner">
       <h1>להפסיק לנסות תפריטים<br><span>ולהתחיל לחיות אחרת</span></h1>
-      <p>שיטה שמלמדת את הגוף והמוח לשלוט באוכל — בלי תפריטים או דיאטות זמניות ובלי למנוע את השגרה שלכם</p>
-      <a href="#proc-form-section" class="proc-cta-btn">אני רוצה לשמוע עוד ←</a>
+      <p>תאכל מה שאתה אוהב, תרד במשקל בהדרגה, ותשמור על זה — בלי תפריטים, בלי ספירת קלוריות, ובלי לשנות את כל השגרה שלך</p>
+      <a href="#proc-form-section" class="proc-cta-btn">קבל שיחת ייעוץ חינמית ←</a>
+      <div class="proc-hero-proof">
+        <span>✓ מאות לקוחות שינו את הדרך שלהם</span>
+        <span>✓ ערבות תוצאות מלאה</span>
+        <span>✓ בלי התחייבות</span>
+      </div>
     </div>
   </div>
 
   <div class="proc-section">
     <div class="proc-section-inner">
     <div class="proc-section-inner" style="text-align:center;">
-      <h2 style="margin-bottom:14px;">למה התפריטים לא עובדים?</h2>
-      <p class="proc-section-sub" style="margin-bottom:36px;">זה לא בגלל שאין לך כוח רצון — זה בגלל שהשיטה שגויה מהיסוד</p>
+    <div class="proc-section-inner" style="text-align:center;">
+      <h2 style="margin-bottom:14px;">למה כל הניסיונות הקודמים לא עבדו?</h2>
       <div class="proc-problems" style="text-align:right;">
-        <div class="proc-problem">
+        <div class="proc-problem proc-animate proc-animate-delay-1">
           <div class="proc-problem-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e8952a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
           <p>התחלת מהר מדיי ולא באופן הדרגתי, ובגלל זה מאוד קשה להתמיד לאורך זמן</p>
         </div>
-        <div class="proc-problem">
+        <div class="proc-problem proc-animate proc-animate-delay-2">
           <div class="proc-problem-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e8952a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg></div>
           <p>אסרת על עצמך דברים שאתה אוהב, והכרחת את עצמך לעשות דברים שאתה שונא</p>
         </div>
-        <div class="proc-problem">
+        <div class="proc-problem proc-animate proc-animate-delay-3">
           <div class="proc-problem-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e8952a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
           <p>לא באמת הרגלת את הגוף למשהו חדש ולכן זה בלתי אפשרי לשמור על התוצאה</p>
         </div>
@@ -1389,21 +1417,21 @@
       <h2>3 שלבים שמשנים הרגלים לצמיתות</h2>
       <p class="proc-section-sub">לא עוד "מחר מתחיל מחדש" — יש מערכת שעובדת</p>
       <div class="proc-steps">
-        <div class="proc-step">
+        <div class="proc-step proc-animate proc-animate-delay-1">
           <div class="proc-step-num">1</div>
           <div class="proc-step-body">
             <h3>מזהים בדיוק מה מפריע לך</h3>
             <p>כמו השאלון שמילאת — מוצאים בדיוק את ההרגלים שעוצרים אותך, לא פתרון גנרי לכולם</p>
           </div>
         </div>
-        <div class="proc-step">
+        <div class="proc-step proc-animate proc-animate-delay-2">
           <div class="proc-step-num">2</div>
           <div class="proc-step-body">
             <h3>משנים אחד אחד, בלי לשבור את החיים</h3>
             <p>הטמעת הרגלים הדרגתית — כל שינוי קטן מצטבר לשינוי גדול שנשאר לצמיתות</p>
           </div>
         </div>
-        <div class="proc-step">
+        <div class="proc-step proc-animate proc-animate-delay-3">
           <div class="proc-step-num">3</div>
           <div class="proc-step-body">
             <h3>יוצאים עצמאי לגמרי</h3>
@@ -1417,25 +1445,25 @@
   <div class="proc-section">
     <div class="proc-section-inner">
       <span class="proc-tag">היתרונות</span>
-      <h2>מה משתנה כשמשנים הרגלים?</h2>
-      <p class="proc-section-sub">שינויים שרואים ומרגישים בחיי היומיום</p>
-      <div class="proc-benefits-grid">
-        <div class="proc-benefit">
+      <span class="proc-tag">מה תקבל</span>
+      <h2>ככה נראים חיים כשאוכל מפסיק להיות בעיה</h2>
+      <p class="proc-section-sub">שינויים שרואים ומרגישים מהשבועות הראשונים</p>
+        <div class="proc-benefit proc-animate proc-animate-delay-1">
           <div class="proc-benefit-icon">🍽️</div>
           <h4>אוכלים בלי אשמה</h4>
           <p>בלי איסורים ובלי ספירת קלוריות — פשוט יותר קל לשלוט</p>
         </div>
-        <div class="proc-benefit">
+        <div class="proc-benefit proc-animate proc-animate-delay-2">
           <div class="proc-benefit-icon">⚡</div>
           <h4>אנרגיה לאורך כל היום</h4>
           <p>אין נפילות אנרגיה אחרי הצהריים. הגוף עובד נכון</p>
         </div>
-        <div class="proc-benefit">
+        <div class="proc-benefit proc-animate proc-animate-delay-3">
           <div class="proc-benefit-icon">🧠</div>
           <h4>פחות מחשבות על אוכל</h4>
           <p>האוכל מפסיק לשלוט בראש שלך — חופש אמיתי</p>
         </div>
-        <div class="proc-benefit">
+        <div class="proc-benefit proc-animate proc-animate-delay-4">
           <div class="proc-benefit-icon">📉</div>
           <h4>ירידה הדרגתית ויציבה</h4>
           <p>לא תפריט קיצוני — שינוי אמיתי שנשאר לצמיתות</p>
@@ -1506,7 +1534,7 @@
 
   <div class="proc-section proc-section-guarantee">
     <div class="proc-section-inner">
-      <div class="proc-guarantee-inner">
+      <div class="proc-guarantee-inner proc-animate">
         <div class="proc-guarantee-badge">✓<br>100%</div>
         <div>
           <h3>ערבות תוצאות מלאה</h3>
@@ -1517,18 +1545,18 @@
   </div>
 
   <div class="proc-cta-banner">
-    <div class="proc-cta-banner-inner">
-      <h2>מוכן לשנות את הדרך שלך?</h2>
-      <p>השאר פרטים ונחזור אליך תוך 24 שעות לשיחת היכרות קצרה</p>
-      <a href="#proc-form-section" class="proc-cta-btn">אני רוצה לשמוע עוד ←</a>
+    <div class="proc-cta-banner-inner proc-animate">
+      <h2>מוכן להפסיק לנסות — ולהתחיל להצליח?</h2>
+      <p>שיחת ייעוץ חינמית ואישית — נחזור אליך תוך 24 שעות, בלי לחץ ובלי התחייבות</p>
+      <a href="#proc-form-section" class="proc-cta-btn">קבל שיחת ייעוץ חינמית ←</a>
     </div>
   </div>
 
   <div class="proc-section" id="proc-form-section">
     <div class="form-card">
       <div id="form-wrap">
-        <h2>השאר פרטים</h2>
-        <p>נחזור אליך תוך 24 שעות לשיחת היכרות קצרה — בלי לחץ, בלי מכירות אגרסיביות</p>
+        <h2>קבל שיחת ייעוץ חינמית</h2>
+        <p>נחזור אליך תוך 24 שעות — ונראה יחד בדיוק מה מתאים לך</p>
         <div class="form-group">
           <label>שם מלא</label>
           <input type="text" id="lead-name" placeholder="הכנס שם מלא" />
@@ -1537,7 +1565,7 @@
           <label>טלפון</label>
           <input type="tel" id="lead-phone" placeholder="05X-XXXXXXX" />
         </div>
-        <button class="form-submit" onclick="submitForm()">אני רוצה לשמוע עוד ←</button>
+        <button class="form-submit" onclick="submitForm()">קבל שיחת ייעוץ חינמית ←</button>
       </div>
       <div class="thank-you" id="thank-you-msg">
         <div class="check-circle">✅</div>
@@ -1885,6 +1913,29 @@ function submitForm() {
   document.getElementById('form-wrap').style.display = 'none';
   document.getElementById('thank-you-msg').style.display = 'block';
 }
+
+// Scroll animations
+(function() {
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  function initAnim() {
+    document.querySelectorAll('.proc-animate').forEach(function(el) { obs.observe(el); });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAnim);
+  } else { initAnim(); }
+  // Re-run when page-process becomes visible
+  var orig = window.showPage;
+  if (typeof orig === 'function') {
+    window.showPage = function(id) {
+      orig(id);
+      if (id === 'page-process') { setTimeout(initAnim, 50); }
+    };
+  }
+})();
 </script>
 </body>
 </html>
