@@ -969,7 +969,7 @@
   }
   .proc-stat span { font-size: 13px; color: var(--text-muted); font-weight: 600; }
 
-  .proc-section { padding: 60px 24px; width: 100%; box-sizing: border-box; }
+  .proc-section { padding: 64px 24px 72px; width: 100%; box-sizing: border-box; }
   .proc-section-dark { background: #1a1a1a; color: white; }
   .proc-section-dark h2 { color: #fff; }
   .proc-section-cream { background: #fff8ee; }
@@ -1141,6 +1141,36 @@
     .proc-track { flex: 1; }
   }
 
+
+  /* ===== TESTIMONIALS MARQUEE ===== */
+  .proc-testi-section { padding: 60px 0 72px; background: #fff8ee; overflow: hidden; }
+  .proc-testi-overflow { overflow: hidden; width: 100%; }
+  .proc-testi-track {
+    display: flex; gap: 16px; width: max-content;
+    animation: testiScroll 22s linear infinite;
+    direction: ltr; padding: 4px 24px 12px;
+  }
+  .proc-testi-track:hover { animation-play-state: paused; }
+  @keyframes testiScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(calc(-50% - 8px)); }
+  }
+  .proc-testi-card {
+    width: 260px; flex-shrink: 0;
+    background: #fff; border-radius: 16px; overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.09);
+    direction: rtl;
+  }
+  .proc-testi-card img { width: 100%; height: auto; display: block; }
+  .proc-testi-caption { padding: 14px 16px 18px; }
+  .proc-testi-caption strong {
+    display: block; font-size: 14px; font-weight: 800;
+    color: var(--text); margin-bottom: 5px;
+  }
+  .proc-testi-caption p {
+    font-size: 13px; color: var(--text-muted);
+    line-height: 1.55; margin: 0; font-style: italic;
+  }
 </style>
 </head>
 <body>
@@ -1414,43 +1444,59 @@
     </div>
   </div>
 
-  <div class="proc-section proc-section-cream">
-    <div class="proc-section-inner">
+  <div class="proc-testi-section">
+    <div class="proc-section-inner" style="padding: 0 24px; margin-bottom: 32px;">
       <span class="proc-tag">מה אומרים לקוחות</span>
       <h2>אנשים שכבר שינו את הדרך שלהם</h2>
-      <p class="proc-section-sub">תוצאות אמיתיות של אנשים אמיתיים</p>
-      <div class="proc-testimonials-grid">
-        <div class="proc-testimonial">
-          <img class="proc-testimonial-img" src="trans-female.jpg" alt="לפני ואחרי - מיכל" />
-          <div class="proc-testimonial-body">
-            <div class="proc-testimonial-stars">★★★★★</div>
-            <p>"ירדתי 18 קילו תוך 5 חודשים. אחרי שנים של תפריטים שנכשלו, לראשונה הצלחתי לשנות משהו אמיתי ולהרגיש שוב בנוח בגוף שלי."</p>
-            <div class="proc-testimonial-author">
-              <div class="proc-testimonial-avatar">מ</div>
-              <div><strong>מיכל ט.</strong><span>5 חודשי ליווי</span></div>
-            </div>
+    </div>
+    <div class="proc-testi-overflow">
+      <div class="proc-testi-track">
+        <div class="proc-testi-card">
+          <img src="trans-female.jpg" alt="מיכל ט." />
+          <div class="proc-testi-caption">
+            <strong>מיכל ט.</strong>
+            <p>"ירדתי 18 קילו תוך 5 חודשים. לראשונה הצלחתי לשנות משהו אמיתי ולהרגיש בנוח בגוף שלי."</p>
           </div>
         </div>
-        <div class="proc-testimonial">
-          <img class="proc-testimonial-img" src="trans-male1.jpg" alt="לפני ואחרי - רון" />
-          <div class="proc-testimonial-body">
-            <div class="proc-testimonial-stars">★★★★★</div>
-            <p>"הגוף שלי שינה צורה לגמרי ב-4 חודשים בלי תפריט נוקשה. אני אוכל את מה שאני רוצה ועדיין רואה תוצאות מדהימות."</p>
-            <div class="proc-testimonial-author">
-              <div class="proc-testimonial-avatar">ר</div>
-              <div><strong>רון א.</strong><span>4 חודשי ליווי</span></div>
-            </div>
+        <div class="proc-testi-card">
+          <img src="trans-male1.jpg" alt="רון א." />
+          <div class="proc-testi-caption">
+            <strong>רון א.</strong>
+            <p>"הגוף שלי שינה צורה ב-4 חודשים בלי תפריט נוקשה. אני אוכל מה שאני רוצה ורואה תוצאות."</p>
           </div>
         </div>
-        <div class="proc-testimonial">
-          <img class="proc-testimonial-img" src="trans-male2.jpg" alt="לפני ואחרי - יוסי" />
-          <div class="proc-testimonial-body">
-            <div class="proc-testimonial-stars">★★★★★</div>
-            <p>"בגיל שלי לא חשבתי שיהיה אפשרי לשנות. ירדתי 14 קילו ב-4 חודשים. זה לא שיטה זמנית — זה שינוי אמיתי לצמיתות."</p>
-            <div class="proc-testimonial-author">
-              <div class="proc-testimonial-avatar">י</div>
-              <div><strong>יוסי מ.</strong><span>4 חודשי ליווי</span></div>
-            </div>
+        <div class="proc-testi-card">
+          <img src="trans-male2.jpg" alt="יוסי מ." />
+          <div class="proc-testi-caption">
+            <strong>יוסי מ.</strong>
+            <p>"בגיל שלי לא חשבתי שיהיה אפשרי. ירדתי 14 קילו ב-4 חודשים. שינוי אמיתי לצמיתות."</p>
+          </div>
+        </div>
+        <!-- Duplicates for seamless loop -->
+        <div class="proc-testi-card">
+          <img src="trans-female.jpg" alt="מיכל ט." />
+          <div class="proc-testi-caption">
+            <strong>מיכל ט.</strong>
+            <p>"ירדתי 18 קילו תוך 5 חודשים. לראשונה הצלחתי לשנות משהו אמיתי ולהרגיש בנוח בגוף שלי."</p>
+          </div>
+        </div>
+        <div class="proc-testi-card">
+          <img src="trans-male1.jpg" alt="רון א." />
+          <div class="proc-testi-caption">
+            <strong>רון א.</strong>
+            <p>"הגוף שלי שינה צורה ב-4 חודשים בלי תפריט נוקשה. אני אוכל מה שאני רוצה ורואה תוצאות."</p>
+          </div>
+        </div>
+        <div class="proc-testi-card">
+          <img src="trans-male2.jpg" alt="יוסי מ." />
+          <div class="proc-testi-caption">
+            <strong>יוסי מ.</strong>
+            <p>"בגיל שלי לא חשבתי שיהיה אפשרי. ירדתי 14 קילו ב-4 חודשים. שינוי אמיתי לצמיתות."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
           </div>
         </div>
       </div>
