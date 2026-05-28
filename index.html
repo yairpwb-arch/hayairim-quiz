@@ -1773,7 +1773,8 @@ async function submitPreDetails() {
     'שליטה בכמויות': catPcts['שליטה בכמויות'] + '%',
     'שינה ואנרגיה': catPcts['שינה ואנרגיה'] + '%',
     'פעילות גופנית': catPcts['פעילות גופנית'] + '%',
-    'מנטליות בריאה': catPcts['מנטליות בריאה'] + '%'
+    'מנטליות בריאה': catPcts['מנטליות בריאה'] + '%',
+    source: 'ליד — מילא שאלון (דף נחיתה)'
   });
 
   // Send email with results link
@@ -1914,7 +1915,7 @@ function sendToSheet(data) {
   fetch(SHEET_URL, {
     method: 'POST',
     mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'text/plain' },
     body: JSON.stringify(data)
   }).catch(err => console.log('Sheet error:', err));
 }
