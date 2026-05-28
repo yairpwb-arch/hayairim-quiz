@@ -1641,8 +1641,13 @@ let finalScore = 0;
 let topCat = '';
 
 function showPage(id) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.page').forEach(p => {
+    p.classList.remove('active');
+    p.style.setProperty('display', 'none', 'important');
+  });
+  const el = document.getElementById(id);
+  el.classList.add('active');
+  el.style.setProperty('display', 'block', 'important');
   window.scrollTo(0, 0);
 }
 
@@ -1856,29 +1861,44 @@ function showResults() {
 
     // ===== AI ANALYSIS =====
     const analysisEl = document.getElementById('ai-analysis');
-    if (window._leadAnalysis) {
-      analysisEl.innerHTML = '<div class="ai-text">' + window._leadAnalysis.replace(/\n/g,'<br>') + '</div>';
-    } else {
-      // Analysis not ready yet — show loading dots, poll localStorage every second
-      let pollCount = 0;
-      const encodedNow = answers.map(a => a !== null ? a : 'x').join('');
-      const nameSlug = window._leadName ? window._leadName.replace(/\s/g,'') + '_' : '';
-      const poll = setInterval(() => {
-        pollCount++;
-        try {
-          const cached = localStorage.getItem('analysis_' + nameSlug + encodedNow);
-          if (cached) {
-            clearInterval(poll);
-            window._leadAnalysis = cached;
-            analysisEl.innerHTML = '<div class="ai-text">' + cached.replace(/\n/g,'<br>') + '</div>';
-            return;
-          }
-        } catch(e) {}
-        if (pollCount >= 30) { // give up after 30s
-          clearInterval(poll);
-          analysisEl.innerHTML = '<div class="ai-text" style="color:#aaa;">הניתוח מגיע בקרוב — רענן את הדף.</div>';
+    const _encodedNow = answers.map(a => a !== null ? a : 'x').join('');
+    const _nameSlug = window._leadName ? window._leadName.replace(/\s/g,'') + '_' : '';
+    const _cacheKey = 'analysis_' + _nameSlug + _encodedNow;
+
+    function _showAnalysis(text) {
+      window._leadAnalysis = text;
+      analysisEl.innerHTML = '<div class="ai-text">' + text.replace(/\n/g,'<br>') + '</div>';
+    }
+
+    function _callAnalysisAPI() {
+      const _catPcts = {};
+      catOrder.forEach(c => { _catPcts[c] = Math.round((catScores[c].raw / catScores[c].max) * 100); });
+      fetch('/api/analyze', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: window._leadName || 'משתמש', score: finalScore, categories: _catPcts })
+      })
+      .then(r => r.json())
+      .then(data => {
+        if (data.analysis) {
+          try { localStorage.setItem(_cacheKey, data.analysis); } catch(e) {}
+          _showAnalysis(data.analysis);
         }
-      }, 1000);
+      })
+      .catch(() => {
+        analysisEl.innerHTML = '<div class="ai-text" style="color:#aaa;">הניתוח מגיע בקרוב — רענן את הדף.</div>';
+      });
+    }
+
+    if (window._leadAnalysis) {
+      _showAnalysis(window._leadAnalysis);
+    } else {
+      // Check localStorage (handles same-device case)
+      try {
+        const _cached = localStorage.getItem(_cacheKey);
+        if (_cached) { _showAnalysis(_cached); }
+        else { _callAnalysisAPI(); } // not cached — fire API (handles different device)
+      } catch(e) { _callAnalysisAPI(); }
     }
   }, 100);
 }
