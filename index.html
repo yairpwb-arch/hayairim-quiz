@@ -1404,12 +1404,12 @@
           <span class="proc-hero-proof-label">לקוחות שינו הרגלים</span>
         </div>
         <div class="proc-hero-proof-item">
-          <span class="proc-hero-proof-big">100%</span>
-          <span class="proc-hero-proof-label">התחייבות לתוצאות</span>
+          <span class="proc-hero-proof-big">0</span>
+          <span class="proc-hero-proof-label">תפריטים<br>רק הרגלים</span>
         </div>
         <div class="proc-hero-proof-item">
-          <span class="proc-hero-proof-big">0</span>
-          <span class="proc-hero-proof-label">תפריטים</span>
+          <span class="proc-hero-proof-big">100%</span>
+          <span class="proc-hero-proof-label">התחייבות לתוצאות</span>
         </div>
       </div>
     </div>
@@ -1781,9 +1781,11 @@ async function submitPreDetails() {
     results_url: resultsUrl
   }).catch(err => console.log('EmailJS error:', err));
 
-  // Show email-sent page
+  // Send email in background (for user's reference), but show results immediately
   document.getElementById('email-sent-to').textContent = email;
-  showPage('page-email-sent');
+
+  // Go directly to results — analysis is already in window._leadAnalysis
+  showResults();
 }
 
 function showResults() {
@@ -1858,9 +1860,10 @@ function showResults() {
 
     // ===== AI ANALYSIS =====
     const analysisEl = document.getElementById('ai-analysis');
+    const fromEmailLink = !!new URLSearchParams(window.location.search).get('a');
     if (window._leadAnalysis) {
       analysisEl.innerHTML = '<div class="ai-text">' + window._leadAnalysis.replace(/\n/g,'<br>') + '</div>';
-    } else {
+    } else if (!fromEmailLink) {
       const catScoresForAI = {};
       catOrder.forEach(cat => {
         catScoresForAI[cat] = Math.round((catScores[cat].raw / catScores[cat].max) * 100);
@@ -1876,7 +1879,7 @@ function showResults() {
           window._leadAnalysis = data.analysis;
           analysisEl.innerHTML = '<div class="ai-text">' + data.analysis.replace(/\n/g,'<br>') + '</div>';
         } else {
-          analysisEl.innerHTML = '<div class="ai-text" style="color:#999;">הניתוח אינו זמין כרגע — הגדרות המערכת חסרות.</div>';
+          analysisEl.innerHTML = '<div class="ai-text" style="color:#999;">הניתוח אינו זמין כרגע.</div>';
         }
       })
       .catch(() => {
