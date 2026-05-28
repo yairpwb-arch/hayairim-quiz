@@ -35,8 +35,8 @@
   }
 
   /* PAGES */
-  .page { display: none; min-height: 100vh; }
-  .page.active { display: block; animation: fadeIn 0.4s ease; }
+  .page { display: none !important; min-height: 100vh; }
+  .page.active { display: block !important; animation: fadeIn 0.4s ease; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
   /* NAV */
@@ -1736,9 +1736,9 @@ async function submitPreDetails() {
     catPcts[c] = Math.round((catScoresTemp[c].raw / catScoresTemp[c].max) * 100);
   });
 
-  // Encode answers — used as cache key
+  // Encode answers — used as cache key (name+answers makes it unique per person)
   const encodedAnswers = answers.map(a => a !== null ? a : 'x').join('');
-  const cacheKey = 'analysis_' + encodedAnswers;
+  const cacheKey = 'analysis_' + name.replace(/\s/g,'') + '_' + encodedAnswers;
 
   // Fire AI call in background — save to localStorage when done, never call again
   if (!localStorage.getItem(cacheKey)) {
@@ -1862,10 +1862,11 @@ function showResults() {
       // Analysis not ready yet — show loading dots, poll localStorage every second
       let pollCount = 0;
       const encodedNow = answers.map(a => a !== null ? a : 'x').join('');
+      const nameSlug = window._leadName ? window._leadName.replace(/\s/g,'') + '_' : '';
       const poll = setInterval(() => {
         pollCount++;
         try {
-          const cached = localStorage.getItem('analysis_' + encodedNow);
+          const cached = localStorage.getItem('analysis_' + nameSlug + encodedNow);
           if (cached) {
             clearInterval(poll);
             window._leadAnalysis = cached;
@@ -1907,7 +1908,8 @@ function sendToSheet(data) {
     window._leadName = n ? decodeURIComponent(n) : '';
     // Load cached analysis from localStorage — no second AI call
     try {
-      const cached = localStorage.getItem('analysis_' + a);
+      const nameSlug = n ? decodeURIComponent(n).replace(/\s/g,'') + '_' : '';
+      const cached = localStorage.getItem('analysis_' + nameSlug + a);
       if (cached) window._leadAnalysis = cached;
     } catch(e) {}
     if (document.readyState === 'loading') {
