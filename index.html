@@ -1396,33 +1396,42 @@
 
   <div class="proc-hero2">
     <div class="proc-hero2-inner">
-      <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,184,99,0.15);border:1px solid rgba(255,184,99,0.4);border-radius:20px;padding:6px 16px;margin-bottom:20px;">
-        <span style="font-size:13px;font-weight:700;color:#e8952a;">🎥 וובינר חינמי · 11.6</span>
+      <div style="margin-bottom:28px;">
+        <div style="font-size:clamp(18px,4.5vw,26px);font-weight:900;color:#ffb863;letter-spacing:0.5px;margin-bottom:6px;">וובינר חינמי</div>
+        <div style="display:inline-flex;align-items:center;gap:14px;">
+          <div style="height:2px;width:40px;background:rgba(255,184,99,0.35);border-radius:2px;"></div>
+          <span style="font-size:clamp(28px,7vw,44px);font-weight:900;color:#fff;letter-spacing:-1px;">11.6</span>
+          <div style="height:2px;width:40px;background:rgba(255,184,99,0.35);border-radius:2px;"></div>
+        </div>
       </div>
       <h1>איך לשנות את<br><span>ההרגלים הרעים שלך?</span></h1>
-      <p>בוובינר אציג את השיטה שלנו לאיך להיפטר <strong>מהשומן העודף בבטן</strong> ולבנות גוף חטוב שיחזיק <strong>לטווח הארוך</strong> — דרך שינוי הרגלים מדויק, <strong>בלי תפריט תזונה.</strong></p>
+      <p>בוובינר אציג את השיטה שלנו לאיך להיפטר <strong style="color:#fff;">מהשומן העודף בבטן</strong> ולבנות גוף חטוב שיחזיק <strong style="color:#fff;">לטווח הארוך</strong> — דרך שינוי הרגלים מדויק, <strong style="color:#ffb863;">בלי תפריט תזונה.</strong></p>
     </div>
   </div>
 
-  <div class="proc-section" style="padding:40px 24px 60px;">
-    <div class="proc-section-inner" style="max-width:500px;">
+  <div class="proc-section" style="padding:48px 24px 72px;">
+    <div class="proc-section-inner" style="max-width:480px;">
 
       <div id="webinar-reg-process">
-        <div style="background:#fff;border:1.5px solid var(--border);border-radius:20px;padding:32px 28px;box-shadow:0 4px 24px rgba(232,149,42,0.10);">
-          <p style="font-size:15px;font-weight:700;color:var(--orange-dark);margin-bottom:20px;text-align:center;">✅ השאר פרטים ונשלח לך את הקישור לוובינר</p>
-          <div style="margin-bottom:14px;">
-            <input type="text" id="webinar-name2" placeholder="שם מלא" style="width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:12px;font-size:15px;font-family:inherit;direction:rtl;box-sizing:border-box;" />
+        <div style="text-align:center;margin-bottom:32px;">
+          <h2 style="font-size:clamp(22px,5.5vw,30px);font-weight:900;color:var(--text);line-height:1.2;margin-bottom:16px;">כאן משריינים מקום לוובינר</h2>
+          <div style="font-size:36px;font-weight:900;color:var(--orange);line-height:1;">&#8595;</div>
+        </div>
+        <div style="background:#fff;border:2px solid rgba(232,149,42,0.22);border-radius:20px;padding:32px 28px;box-shadow:0 8px 40px rgba(232,149,42,0.13);">
+          <div style="margin-bottom:16px;">
+            <input type="text" id="webinar-name2" placeholder="שם מלא" style="width:100%;padding:14px 18px;border:1.5px solid #e8e0d4;border-radius:12px;font-size:16px;font-family:inherit;direction:rtl;box-sizing:border-box;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='#e8952a'" onblur="this.style.borderColor='#e8e0d4'" />
           </div>
-          <div style="margin-bottom:20px;">
-            <input type="tel" id="webinar-phone2" placeholder="טלפון" style="width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:12px;font-size:15px;font-family:inherit;direction:rtl;box-sizing:border-box;" />
+          <div style="margin-bottom:24px;">
+            <input type="tel" id="webinar-phone2" placeholder="טלפון" style="width:100%;padding:14px 18px;border:1.5px solid #e8e0d4;border-radius:12px;font-size:16px;font-family:inherit;direction:rtl;box-sizing:border-box;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='#e8952a'" onblur="this.style.borderColor='#e8e0d4'" />
           </div>
-          <button class="btn-primary" style="width:100%;justify-content:center;" onclick="submitWebinarProcess()">שמור לי מקום ←</button>
-          <p id="webinar-error2" style="display:none;text-align:center;margin-top:10px;font-size:13px;color:#e24b4a;font-weight:600;"></p>
+          <button class="btn-primary" style="width:100%;justify-content:center;font-size:17px;padding:16px;" onclick="submitWebinarProcess()">שמור לי מקום ←</button>
+          <p id="webinar-error2" style="display:none;text-align:center;margin-top:12px;font-size:13px;color:#e24b4a;font-weight:600;"></p>
+          <p style="text-align:center;margin-top:14px;font-size:12px;color:var(--text-muted);">🔒 הפרטים שלך מאובטחים ולא יועברו לצד שלישי</p>
         </div>
       </div>
 
-      <div id="webinar-thanks-process" style="display:none;text-align:center;padding:32px 20px;">
-        <div style="font-size:52px;margin-bottom:16px;">🎉</div>
+      <div id="webinar-thanks-process" style="display:none;text-align:center;padding:40px 20px;">
+        <div style="width:72px;height:72px;background:#fff4e0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:36px;margin:0 auto 20px;box-shadow:0 4px 20px rgba(255,184,99,0.3);">🎉</div>
         <h2 style="font-size:24px;font-weight:900;color:var(--text);margin-bottom:12px;">נרשמת בהצלחה!</h2>
         <p style="font-size:16px;color:var(--text-muted);line-height:1.7;">נשלח לך את הקישור לוובינר לפני ה-11.6.<br>מחכים לראותך! 🙌</p>
       </div>
