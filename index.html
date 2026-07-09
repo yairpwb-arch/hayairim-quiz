@@ -450,24 +450,52 @@
     border-bottom: 1px solid rgba(201,162,39,0.15);
   }
 
-  .score-ring-wrap { display: flex; justify-content: center; margin-bottom: 28px; }
-  .score-ring { position: relative; width: 160px; height: 160px; }
-  .score-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
-  .score-ring-track { fill: none; stroke: rgba(255,255,255,0.06); stroke-width: 12; }
-  .score-ring-fill {
-    fill: none; stroke: #f0c040;
-    stroke-width: 12; stroke-linecap: round;
-    stroke-dasharray: 408; stroke-dashoffset: 408;
-    transition: stroke-dashoffset 1.5s ease;
+  .spectrum-wrap {
+    width: 100%; max-width: 480px;
+    margin: 0 auto 32px;
+    direction: ltr;
   }
-  .score-number {
-    position: absolute; inset: 0;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    font-size: 42px; font-weight: 900;
-    color: #f0f0f0; letter-spacing: -2px; line-height: 1;
+  .spectrum-labels {
+    display: flex; justify-content: space-between;
+    margin-bottom: 12px; direction: rtl;
   }
-  .score-number small { font-size: 14px; font-weight: 500; color: rgba(240,240,240,0.4); letter-spacing: 0; }
+  .spec-label-right { font-size: 13px; font-weight: 800; color: #f0c040; letter-spacing: 0.5px; }
+  .spec-label-left  { font-size: 13px; font-weight: 800; color: #dc2626; letter-spacing: 0.5px; }
+
+  .spectrum-track { position: relative; padding-top: 36px; }
+
+  .spectrum-blocks {
+    display: flex; gap: 2px;
+    height: 24px; width: 100%;
+    flex-direction: row-reverse;
+  }
+  .spectrum-block {
+    flex: 1; height: 100%;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.06);
+  }
+
+  .spectrum-pointer {
+    position: absolute; top: 0;
+    transform: translateX(50%);
+    right: 0%;
+    transition: right 1.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex; flex-direction: column; align-items: center;
+    pointer-events: none;
+  }
+  .spectrum-pointer-tip {
+    width: 0; height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 9px solid #f0f0f0;
+    margin-bottom: 3px;
+  }
+  .spectrum-pointer-score {
+    background: #f0f0f0; color: #0d0d0d;
+    font-size: 16px; font-weight: 900;
+    padding: 2px 8px; border-radius: 6px;
+    line-height: 1.4;
+  }
 
   .result-level-badge {
     display: inline-block;
@@ -1266,15 +1294,16 @@
   </nav>
 
   <div class="results-hero">
-    <div class="score-ring-wrap">
-      <div class="score-ring">
-        <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-          <circle class="score-ring-track" cx="70" cy="70" r="65"/>
-          <circle class="score-ring-fill" id="score-ring-fill" cx="70" cy="70" r="65"/>
-        </svg>
-        <div class="score-number">
-          <span id="score-display">0</span>
-          <small>מתוך 100</small>
+    <div class="spectrum-wrap">
+      <div class="spectrum-labels">
+        <span class="spec-label-right">הרזייה ✦</span>
+        <span class="spec-label-left">✦ השמנה</span>
+      </div>
+      <div class="spectrum-track">
+        <div class="spectrum-blocks" id="spectrum-blocks"></div>
+        <div class="spectrum-pointer" id="spectrum-pointer">
+          <div class="spectrum-pointer-tip"></div>
+          <div class="spectrum-pointer-score" id="score-display">0</div>
         </div>
       </div>
     </div>
@@ -1560,12 +1589,25 @@ function showResults() {
     const descEl = document.getElementById('result-description'); if (descEl) descEl.textContent = level.desc;
 
     const scoreEl = document.getElementById('score-display');
-    const ringEl = document.getElementById('score-ring-fill');
-    const circumference = 408;
     if (scoreEl) scoreEl.textContent = finalScore;
-    if (ringEl) {
-      void ringEl.getBoundingClientRect();
-      ringEl.style.strokeDashoffset = circumference - (finalScore / 100) * circumference;
+
+    var blocksEl  = document.getElementById('spectrum-blocks');
+    var pointerEl = document.getElementById('spectrum-pointer');
+    if (blocksEl) {
+      blocksEl.innerHTML = '';
+      for (var _i = 100; _i >= 1; _i--) {
+        var _b = document.createElement('div');
+        _b.className = 'spectrum-block';
+        if (_i <= finalScore) {
+          if (_i <= 33)      _b.style.background = '#dc2626';
+          else if (_i <= 66) _b.style.background = '#e8952a';
+          else               _b.style.background = '#f0c040';
+        }
+        blocksEl.appendChild(_b);
+      }
+      setTimeout(function() {
+        if (pointerEl) pointerEl.style.right = finalScore + '%';
+      }, 80);
     }
 
     const barsEl = document.getElementById('category-bars');
