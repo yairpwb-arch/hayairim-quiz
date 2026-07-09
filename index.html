@@ -405,128 +405,47 @@
     margin-bottom: 14px; text-align: right;
   }
 
-  /* ======= PAGE 2 — QUIZ ======= */
+  /* ======= PAGE 2 — QUIZ (SCROLL STYLE) ======= */
   #page-quiz {
-    background: #fffaf3;
-    padding-bottom: 60px;
+    background: #0d0d0d;
+    min-height: 100vh;
+    padding-bottom: 80px;
   }
 
-  .quiz-header {
-    background: var(--white);
-    padding: 20px 24px 0;
-    border-bottom: 1px solid var(--border);
+  .quiz2-header {
+    background: #111111;
+    border-bottom: 1px solid rgba(201,162,39,0.2);
+    padding: 0 20px; height: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 10;
   }
-  .quiz-meta {
-    display: flex; justify-content: space-between; align-items: center;
-    max-width: 600px; margin: 0 auto 14px;
-  }
-  .q-counter {
-    font-size: 13px; color: var(--text-muted); font-weight: 600;
-  }
-  .q-counter strong { color: var(--text); font-size: 15px; }
-  .progress-bar {
-    height: 6px;
-    background: #eee;
-    border-radius: 3px;
-    overflow: hidden;
-    max-width: 600px; margin: 0 auto;
-    position: relative; bottom: -1px;
-  }
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--orange), var(--orange-dark));
-    border-radius: 3px;
-    transition: width 0.4s ease;
-  }
+  .quiz2-logo { font-size: 17px; font-weight: 900; color: #f0f0f0; letter-spacing: -0.4px; }
+  .quiz2-step-label { font-size: 12px; font-weight: 700; color: rgba(240,240,240,0.32); letter-spacing: 0.5px; }
 
-  .quiz-body {
-    max-width: 600px; margin: 0 auto;
-    padding: 36px 20px 20px;
-  }
+  .quiz2-body { max-width: 600px; margin: 0 auto; padding: 40px 20px 0; display: flex; flex-direction: column; gap: 36px; }
 
-  .category-label {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 12px; font-weight: 700;
-    color: var(--orange-dark);
-    background: var(--orange-light);
-    padding: 4px 12px; border-radius: 100px;
-    margin-bottom: 16px;
-    border: 1px solid rgba(255,184,99,0.3);
-  }
+  .quiz2-q { display: flex; flex-direction: column; gap: 14px; }
+  .quiz2-q-num { font-size: 11px; font-weight: 800; color: #c9a227; letter-spacing: 2px; }
+  .quiz2-q-text { font-size: clamp(17px, 3.5vw, 20px); font-weight: 800; color: #f0f0f0; line-height: 1.4; letter-spacing: -0.3px; }
 
-  .question-text {
-    font-size: clamp(18px, 3.5vw, 22px);
-    font-weight: 800;
-    line-height: 1.4;
-    color: var(--text);
-    margin-bottom: 28px;
-    letter-spacing: -0.3px;
-  }
+  .quiz2-options { display: flex; flex-direction: column; gap: 10px; }
+  .quiz2-opt { cursor: pointer; }
+  .quiz2-opt input[type="radio"] { display: none; }
+  .quiz2-opt-box { display: block; background: #1c1c1c; border: 1.5px solid rgba(201,162,39,0.28); border-radius: 12px; padding: 14px 18px; font-size: 15px; font-weight: 500; color: rgba(240,240,240,0.58); line-height: 1.5; transition: all 0.18s ease; cursor: pointer; direction: rtl; }
+  .quiz2-opt:hover .quiz2-opt-box { border-color: #c9a227; background: rgba(201,162,39,0.13); color: #f0f0f0; }
+  .quiz2-opt input[type="radio"]:checked + .quiz2-opt-box { border-color: #f0c040; background: rgba(201,162,39,0.13); color: #f0f0f0; box-shadow: 0 0 0 1px rgba(240,192,64,0.25); }
 
-  .answers-grid {
-    display: flex; flex-direction: column; gap: 12px;
-  }
+  .quiz2-divider { height: 1px; background: rgba(240,240,240,0.06); }
 
-  .answer-btn {
-    background: var(--white);
-    border: 1.5px solid var(--border);
-    border-radius: 14px;
-    padding: 16px 20px;
-    text-align: right;
-    cursor: pointer;
-    transition: all 0.18s ease;
-    font-family: 'Heebo', sans-serif;
-    font-size: 15px; font-weight: 500;
-    color: var(--text);
-    line-height: 1.5;
-    display: flex; align-items: flex-start; gap: 12px;
-    box-shadow: var(--card-shadow);
-    width: 100%;
-  }
-  .answer-btn:hover {
-    border-color: var(--orange);
-    background: var(--orange-light);
-    transform: translateX(-3px);
-    box-shadow: var(--card-shadow-hover);
-  }
-  .answer-btn.selected {
-    border-color: var(--orange-dark);
-    background: var(--orange-light);
-    box-shadow: 0 4px 20px rgba(255,184,99,0.3);
-  }
-  .answer-letter {
-    min-width: 28px; height: 28px;
-    background: var(--bg);
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 13px; font-weight: 800;
-    color: var(--text-muted);
-    flex-shrink: 0;
-    margin-top: 1px;
-    border: 1px solid var(--border);
-    transition: all 0.18s;
-  }
-  .answer-btn:hover .answer-letter,
-  .answer-btn.selected .answer-letter {
-    background: var(--orange);
-    color: var(--white);
-    border-color: var(--orange);
-  }
+  .quiz2-name-label { font-size: clamp(17px, 3.5vw, 20px); font-weight: 800; color: #f0f0f0; letter-spacing: -0.3px; margin-bottom: 10px; }
+  .quiz2-input { width: 100%; background: #1c1c1c; border: 1.5px solid rgba(201,162,39,0.28); border-radius: 12px; padding: 14px 18px; font-size: 16px; font-family: 'Heebo', sans-serif; color: #f0f0f0; direction: rtl; outline: none; box-sizing: border-box; transition: border-color 0.2s; }
+  .quiz2-input::placeholder { color: rgba(240,240,240,0.32); }
+  .quiz2-input:focus { border-color: #f0c040; }
 
-  .quiz-nav {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-top: 28px; max-width: 600px; margin: 28px auto 0;
-    padding: 0 20px;
-  }
-  .btn-back {
-    background: none; border: 1.5px solid var(--border);
-    border-radius: 100px; padding: 10px 24px;
-    font-family: 'Heebo', sans-serif; font-size: 14px; font-weight: 600;
-    color: var(--text-muted); cursor: pointer;
-    transition: all 0.18s;
-  }
-  .btn-back:hover { border-color: var(--text-muted); color: var(--text); }
-  .btn-back:disabled { opacity: 0.3; cursor: default; }
+  .quiz2-submit { width: 100%; background: #dc2626; color: #fff; font-family: 'Heebo', sans-serif; font-size: 18px; font-weight: 800; padding: 17px; border-radius: 100px; border: none; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 4px 24px rgba(220,38,38,0.35); letter-spacing: -0.3px; margin-top: 8px; }
+  .quiz2-submit:hover { background: #b91c1c; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(220,38,38,0.45); }
+  .quiz2-submit:active { transform: translateY(0); }
+  .quiz2-error { display: none; text-align: center; margin-top: 12px; font-size: 13px; color: #dc2626; font-weight: 600; }
 
   /* ======= PAGE 3 — RESULTS ======= */
   #page-results { background: #fffaf3; padding-bottom: 80px; }
@@ -1275,28 +1194,84 @@
 
 <!-- ===== PAGE 2: QUIZ ===== -->
 <div id="page-quiz" class="page">
-  <div class="quiz-header">
-    <div class="quiz-meta">
-      <div class="q-counter">שאלה <strong id="q-current">1</strong> מתוך 15</div>
-      <div style="font-size:13px; color:var(--text-muted);" id="cat-display"></div>
-    </div>
-    <div class="progress-bar">
-      <div class="progress-fill" id="progress-fill" style="width:6.67%"></div>
-    </div>
+  <div class="quiz2-header">
+    <div class="quiz2-logo">חטוב בלי תפריט</div>
+    <div class="quiz2-step-label">שאלון קצר</div>
   </div>
+  <div class="quiz2-body">
 
-  <div class="quiz-body">
-    <div class="category-label" id="category-label"></div>
-    <div class="question-text" id="question-text"></div>
-    <div class="answers-grid" id="answers-grid"></div>
-  </div>
+    <div class="quiz2-q">
+      <div class="quiz2-q-num">01 / 05</div>
+      <div class="quiz2-q-text">כשיש לחץ, שעמום או עצב — מה אתם בדרך כלל עושים?</div>
+      <div class="quiz2-options">
+        <label class="quiz2-opt"><input type="radio" name="q1" value="2"><span class="quiz2-opt-box">זה לא ממש קשור אצלי לאוכל</span></label>
+        <label class="quiz2-opt"><input type="radio" name="q1" value="1"><span class="quiz2-opt-box">לפעמים כן פונה לאוכל בשביל להרגיש טוב יותר</span></label>
+        <label class="quiz2-opt"><input type="radio" name="q1" value="0"><span class="quiz2-opt-box">האוכל הוא הדרך הראשונה שלי להתמודד עם רגשות</span></label>
+      </div>
+    </div>
 
-  <div class="quiz-nav">
-    <button class="btn-back" id="btn-back" onclick="goBack()" disabled>→ הקודם</button>
-    <div style="font-size:13px; color:var(--text-light); font-weight:500;" id="q-hint">לחץ על תשובה להמשיך</div>
+    <div class="quiz2-divider"></div>
+
+    <div class="quiz2-q">
+      <div class="quiz2-q-num">02 / 05</div>
+      <div class="quiz2-q-text">מה קורה כשיש לפניך אוכל שאוהבים?</div>
+      <div class="quiz2-options">
+        <label class="quiz2-opt"><input type="radio" name="q2" value="2"><span class="quiz2-opt-box">אוכל/ת כמות סבירה ועוצר/ת</span></label>
+        <label class="quiz2-opt"><input type="radio" name="q2" value="1"><span class="quiz2-opt-box">קצת מתקשה, אבל בסוף מצליח/ה לשלוט</span></label>
+        <label class="quiz2-opt"><input type="radio" name="q2" value="0"><span class="quiz2-opt-box">לא מפסיק/ה עד שהצלחת ריקה או שהאוכל נגמר</span></label>
+      </div>
+    </div>
+
+    <div class="quiz2-divider"></div>
+
+    <div class="quiz2-q">
+      <div class="quiz2-q-num">03 / 05</div>
+      <div class="quiz2-q-text">בשעות הערב המאוחרות (אחרי 21:00) — מה עושים בדרך כלל?</div>
+      <div class="quiz2-options">
+        <label class="quiz2-opt"><input type="radio" name="q3" value="2"><span class="quiz2-opt-box">לא אוכל/ת כלום, סגרתי את היום</span></label>
+        <label class="quiz2-opt"><input type="radio" name="q3" value="1"><span class="quiz2-opt-box">לפעמים משהו קטן, מול הטלוויזיה</span></label>
+        <label class="quiz2-opt"><input type="radio" name="q3" value="0"><span class="quiz2-opt-box">זו השעה שאני אוכל/ת הכי הרבה — ה"נפילה" הגדולה שלי</span></label>
+      </div>
+    </div>
+
+    <div class="quiz2-divider"></div>
+
+    <div class="quiz2-q">
+      <div class="quiz2-q-num">04 / 05</div>
+      <div class="quiz2-q-text">מה הסיבה האמיתית שאתם לא מתאמנים יותר?</div>
+      <div class="quiz2-options">
+        <label class="quiz2-opt"><input type="radio" name="q4" value="2"><span class="quiz2-opt-box">אני כן מתאמן/ת בקביעות</span></label>
+        <label class="quiz2-opt"><input type="radio" name="q4" value="1"><span class="quiz2-opt-box">עייפות — בסוף יום אין כוח</span></label>
+        <label class="quiz2-opt"><input type="radio" name="q4" value="0"><span class="quiz2-opt-box">התחלתי הרבה פעמים ותמיד הפסקתי</span></label>
+      </div>
+    </div>
+
+    <div class="quiz2-divider"></div>
+
+    <div class="quiz2-q">
+      <div class="quiz2-q-num">05 / 05</div>
+      <div class="quiz2-q-text">מה קורה אחרי שאתם אוכלים משהו "אסור" כביכול?</div>
+      <div class="quiz2-options">
+        <label class="quiz2-opt"><input type="radio" name="q5" value="2"><span class="quiz2-opt-box">ממשיך/ה הלאה, זה לא הסוף</span></label>
+        <label class="quiz2-opt"><input type="radio" name="q5" value="1"><span class="quiz2-opt-box">מרגיש/ה שכבר "הרסתי" את היום ואוכל/ת עוד</span></label>
+        <label class="quiz2-opt"><input type="radio" name="q5" value="0"><span class="quiz2-opt-box">נכנס/ת למצב של "עזבו, אתחיל מחר" ומפסיק/ה לשמור</span></label>
+      </div>
+    </div>
+
+    <div class="quiz2-divider"></div>
+
+    <div class="quiz2-q">
+      <div class="quiz2-name-label">ואיך קוראים לך?</div>
+      <input type="text" id="quiz2-name" class="quiz2-input" placeholder="שם מלא" />
+    </div>
+
+    <div>
+      <button class="quiz2-submit" onclick="submitQuizNew()">שלח ←</button>
+      <p id="quiz2-error" class="quiz2-error"></p>
+    </div>
+
   </div>
 </div>
-
 
 <!-- ===== PAGE 2.5: DETAILS BEFORE RESULTS ===== -->
 <div id="page-details" class="page">
@@ -1468,21 +1443,11 @@
 
 <script>
 const questions = [
-  { cat: 'אכילה רגשית', icon: '😤', text: 'כשיש לחץ, שעמום או עצב — מה בדרך כלל עושים?', answers: ['לא פונה לאוכל בכלל, זה לא קשור אצלי','לפעמים אני מוצא/ת את עצמי אוכל/ת, אבל זה נדיר','לעיתים קרובות אני פונה לאוכל כדי להרגיש טוב יותר','האוכל הוא הדרך הראשונה שלי להתמודד עם רגשות'], scores: [3,2,1,0] },
-  { cat: 'אכילה רגשית', icon: '😤', text: 'מתי בדרך כלל מגיע הרצון הכי חזק לאכול משהו "אסור"?', answers: ['כמעט לא קורה לי','בעיקר כשאני עייף/ה בסוף היום','אחרי ויכוח או מצב מלחיץ','ברגע שאני משועמם/ת, גם אם אכלתי לפני שעה'], scores: [3,2,1,0] },
-  { cat: 'אכילה רגשית', icon: '😤', text: 'מסיימים ארוחה ועדיין מרגישים שחסר משהו — למה זה קורה?', answers: ['לא קורה לי','כנראה לא אכלתי מספיק','האוכל היה בסדר, אבל משהו העיק עליי לפני כן','אני לא יודע/ת — זה פשוט קורה'], scores: [3,2,1,0] },
-  { cat: 'שליטה בכמויות', icon: '🍽️', text: 'כשאוכלים, מה מתאר הכי טוב את הרגע?', answers: ['אוכל/ת בשקט ובריכוז, ומפסיק/ה כשמגיעה תחושת שובע','לפעמים אוכל/ת מול מסך, אבל עדיין שם לב לכמויות','כמעט תמיד מול מסך, ולא ממש שם לב כמה אכלתי','אוכל/ת מהר, כמעט בלי לשים לב, ומסיים/ת הרבה לפני שהגוף מספיק להגיד "שבע"'], scores: [3,2,1,0] },
-  { cat: 'שליטה בכמויות', icon: '🍽️', text: 'מה קורה כשיש לפניך אוכל שאוהבים?', answers: ['אוכל/ת כמות סבירה ועוצר/ת','קצת מתקשה אבל מצליח/ה לשלוט','מוצא/ת את עצמי ממשיך/ה הרבה מעבר לשובע','לא מפסיק/ה עד שהצלחת ריקה או שהאוכל נגמר'], scores: [3,2,1,0] },
-  { cat: 'שליטה בכמויות', icon: '🍽️', text: 'כמה פעמים ביום אוכלים בערך?', answers: ['3 ארוחות מסודרות, לפעמים ביניהן משהו קטן','2-3 ארוחות, אבל עם הרבה "נגיסות" לא מתוכננות','אני לא ממש סופר/ת — אוכל/ת כשמתחשק','ארוחה אחת-שתיים גדולות ובין לבין כל מיני דברים'], scores: [3,2,1,0] },
-  { cat: 'שינה ואנרגיה', icon: '😴', text: 'כמה שעות שינה בממוצע בלילה?', answers: ['7-8 שעות, מרגיש/ה טוב עם זה','6-7, לפעמים קצת עייף/ה','5-6, רוב הזמן עייף/ה','פחות מ-5, או שינה לא רציפה — עייף/ה כמעט תמיד'], scores: [3,2,1,0] },
-  { cat: 'שינה ואנרגיה', icon: '😴', text: 'כשיש עייפות גדולה — איך זה משפיע על האוכל?', answers: ['לא משפיע, אוכל/ת אותו דבר','אולי קצת פחות סבלנות לבשל, אבל מסתדר/ת','כשאני עייף/ה אני מחפש/ת אוכל מהיר ומתוק לאנרגיה','עייפות = אוכל הרבה יותר, בעיקר פחמימות וממתקים'], scores: [3,2,1,0] },
-  { cat: 'שינה ואנרגיה', icon: '😴', text: 'בשעות הערב המאוחרות (אחרי 21:00) — מה עושים בדרך כלל?', answers: ['לא אוכל/ת כלום, סגרתי את היום','לפעמים משהו קטן אם באמת רעב/ה','כמעט תמיד מוצא/ת את עצמי אוכל/ת משהו מול הטלוויזיה','זו השעה שאוכלים הכי הרבה — ה"נפילה" הגדולה שלי'], scores: [3,2,1,0] },
-  { cat: 'פעילות גופנית', icon: '🏃', text: 'כמה פעמים בשבוע זזים בצורה מכוונת (אימון, הליכה, כל דבר)?', answers: ['4 פעמים ומעלה — זה חלק מהשגרה שלי','2-3 פעמים, לא קבוע לגמרי','פעם אחת בשבוע אם בכלל','כמעט לא זז/ה — אין זמן, כוח או מוטיבציה'], scores: [3,2,1,0] },
-  { cat: 'פעילות גופנית', icon: '🏃', text: 'מה קורה כשמפספסים אימון או שבוע שלם של פעילות?', answers: ['חוזר/ת בקלות, זה לא זורק אותי','קצת קשה לחזור אבל מצליח/ה','מפספס/ת שבוע אחד וזה נהיה חודש','ברגע שנשבר הקצב — נגמר, לא חוזר/ת עד שמשהו מחזיר אותי'], scores: [3,2,1,0] },
-  { cat: 'פעילות גופנית', icon: '🏃', text: 'מה הסיבה האמיתית שלא מתאמנים יותר?', answers: ['אני כן מתאמן/ת, זה לא הבעיה שלי','עייפות — בסוף יום אין כוח','אני לא יודע/ת מה לעשות ולא רוצה להיראות אידיוט/ית','התחלתי הרבה פעמים ותמיד נפסקתי — כבר לא בטוח/ה שאצליח/י להחזיק'], scores: [3,2,1,0] },
-  { cat: 'מנטליות בריאה', icon: '🧠', text: 'מה קורה אחרי שאוכלים משהו "אסור"?', answers: ['ממשיך/ה הלאה, זה לא הסוף','מרגיש/ה קצת אשמה אבל עובר/ת','מרגיש/ה שכבר "הרסתי" את היום ואוכל/ת עוד','נכנס/ת למצב של "עזבו, אתחיל מחר" ומפסיק/ה לשמור על עצמי'], scores: [3,2,1,0] },
-  { cat: 'מנטליות בריאה', icon: '🧠', text: 'כמה פעמים ניסית/ת "להתחיל תפריט" בשנה האחרונה?', answers: ['לא, אני לא מאמין/ה בתפריטים','פעם אחת, לא החזיק מעמד','2-3 פעמים, כל פעם נפל אחרי כמה שבועות','הרבה פעמים — אני מתחיל/ה ועוצר/ת במעגל קבוע'], scores: [3,2,1,0] },
-  { cat: 'מנטליות בריאה', icon: '🧠', text: 'מה לדעתך מונע ממך לרדת במשקל?', answers: ['חוסר משמעת בלבד','אני לא יודע/ת מה לאכול','יש לי ידע אבל לא מצליח/ה ליישם','כל פעם שמתחיל/ה — משהו מפיל אותי חזרה ואני לא מבין/ה למה'], scores: [2,1,2,0] }
+  { cat: 'אכילה רגשית',    text: 'כשיש לחץ, שעמום או עצב',      answers: ['זה לא קשור לאוכל','לפעמים פונה לאוכל','האוכל הוא הדרך הראשונה שלי'], scores: [2,1,0] },
+  { cat: 'שליטה בכמויות', text: 'אוכל שאוהבים לפניך',           answers: ['אוכל כמות סבירה','מתקשה אבל שולט','לא מפסיק עד שנגמר'], scores: [2,1,0] },
+  { cat: 'שינה ואנרגיה',  text: 'ערב מאוחר אחרי 21:00',         answers: ['לא אוכל כלום','משהו קטן מול טלוויזיה','הנפילה הגדולה שלי'], scores: [2,1,0] },
+  { cat: 'פעילות גופנית', text: 'למה לא מתאמנים יותר',           answers: ['מתאמן בקביעות','עייפות בסוף יום','התחלתי והפסקתי הרבה פעמים'], scores: [2,1,0] },
+  { cat: 'מנטליות בריאה', text: 'אחרי אכילת משהו אסור כביכול',  answers: ['ממשיך הלאה','הרסתי את היום','עזבו אתחיל מחר'], scores: [2,1,0] }
 ];
 
 const levels = [
@@ -1502,7 +1467,7 @@ const catOrder = ['אכילה רגשית','שליטה בכמויות','שינה 
 const letters = ['א','ב','ג','ד'];
 
 let currentQ = 0;
-let answers = new Array(15).fill(null);
+let answers = new Array(5).fill(null);
 let finalScore = 0;
 let topCat = '';
 
@@ -1539,11 +1504,40 @@ function submitWebinarProcess() {
   }, 2500);
 }
 function startQuiz() {
-  currentQ = 0;
-  answers = new Array(15).fill(null);
-  renderQuestion();
+  answers = new Array(5).fill(null);
+  document.querySelectorAll('.quiz2-opt input').forEach(function(r){ r.checked = false; });
+  var n = document.getElementById('quiz2-name'); if (n) n.value = '';
+  var e = document.getElementById('quiz2-error'); if (e) e.style.display = 'none';
   showPage('page-quiz');
 }
+function submitQuizNew() {
+  var errEl = document.getElementById('quiz2-error');
+  var qNames = ['q1','q2','q3','q4','q5'];
+  var newAnswers = [];
+  for (var i = 0; i < 5; i++) {
+    var sel = document.querySelector('input[name="' + qNames[i] + '"]:checked');
+    if (!sel) {
+      errEl.textContent = 'נא לענות על כל השאלות';
+      errEl.style.display = 'block';
+      return;
+    }
+    newAnswers.push(parseInt(sel.value));
+  }
+  var name = document.getElementById('quiz2-name').value.trim();
+  if (!name) {
+    errEl.textContent = 'נא להזין שם מלא';
+    errEl.style.display = 'block';
+    return;
+  }
+  errEl.style.display = 'none';
+  // Convert radio score value (2/1/0) to answer index (0/1/2)
+  answers = newAnswers.map(function(score){ return 2 - score; });
+  window._leadName = name;
+  var preNameEl = document.getElementById('pre-name');
+  if (preNameEl) preNameEl.value = name;
+  showPage('page-details');
+}
+
 
 function renderQuestion() {
   const q = questions[currentQ];
